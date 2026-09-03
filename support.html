@@ -1,1 +1,1092 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>support — Community</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/responsive.css"></head><body><main class="auth-page"><div class="auth-card"><div class="brand large">Community</div><h1>Support</h1><p class="muted">Page ready for implementation.</p><a class="primary-btn" href="index.html">Back to Home</a></div></main><script src="js/app.js"></script><script src="js/auth.js"></script><script src="js/posts.js"></script><script src="js/profile.js"></script><script src="js/explore.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <title>Support · Brocode</title>
+
+  <meta
+    name="description"
+    content="Contact Brocode support."
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* =========================================
+       BROCODE SUPPORT
+    ========================================= */
+
+    .support-page {
+      min-height: 100vh;
+      padding-bottom: 92px;
+    }
+
+    .support-container {
+      width: min(100%, 900px);
+      height: calc(100vh - 92px);
+      min-height: 560px;
+      margin: 0 auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+
+    .support-header {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 4px 0 17px;
+    }
+
+    .support-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .support-back {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .support-back:hover {
+      background: rgba(255,255,255,.07);
+      transform: translateX(-2px);
+    }
+
+    .support-back svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .support-agent {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .support-avatar {
+      position: relative;
+      width: 43px;
+      height: 43px;
+      flex: 0 0 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(139,92,246,.95),
+        rgba(99,102,241,.8)
+      );
+      color: white;
+      box-shadow: 0 8px 25px rgba(124,58,237,.18);
+    }
+
+    .support-avatar svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .support-online-dot {
+      position: absolute;
+      right: -1px;
+      bottom: -1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #34d399;
+      border: 2px solid var(--bg);
+    }
+
+    .support-agent-info {
+      min-width: 0;
+    }
+
+    .support-agent-name {
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .support-agent-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
+      color: #8fe8bd;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .support-header-action {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .support-header-action:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+    }
+
+    .support-header-action svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Chat Window */
+
+    .support-chat {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(139,92,246,.055),
+          transparent 34%
+        ),
+        rgba(17,21,31,.72);
+      box-shadow: 0 20px 60px rgba(0,0,0,.16);
+    }
+
+    /* Notice */
+
+    .support-notice {
+      flex: 0 0 auto;
+      margin: 13px 14px 0;
+      padding: 10px 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      border: 1px solid rgba(139,92,246,.13);
+      border-radius: 12px;
+      background: rgba(139,92,246,.055);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .support-notice svg {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+      margin-top: 1px;
+      color: #a78bfa;
+    }
+
+    /* Messages */
+
+    .support-messages {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 17px 14px;
+      scroll-behavior: smooth;
+    }
+
+    .support-messages::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .support-messages::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+    }
+
+    .message-day {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 4px 0 18px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .message-day::before,
+    .message-day::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(255,255,255,.055);
+    }
+
+    .message {
+      display: flex;
+      margin-bottom: 14px;
+      animation: messageIn .22s ease both;
+    }
+
+    @keyframes messageIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.support {
+      justify-content: flex-start;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-wrap {
+      max-width: min(76%, 570px);
+    }
+
+    .message-bubble {
+      padding: 11px 13px;
+      border-radius: 15px;
+      font-size: 12px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .message.support .message-bubble {
+      border: 1px solid rgba(255,255,255,.07);
+      border-top-left-radius: 5px;
+      background: rgba(255,255,255,.045);
+      color: var(--text);
+    }
+
+    .message.user .message-bubble {
+      border: 1px solid rgba(139,92,246,.25);
+      border-top-right-radius: 5px;
+      background: linear-gradient(
+        135deg,
+        rgba(139,92,246,.9),
+        rgba(124,58,237,.88)
+      );
+      color: white;
+    }
+
+    .message-time {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .message.user .message-time {
+      text-align: right;
+    }
+
+    /* Quick Questions */
+
+    .support-quick {
+      flex: 0 0 auto;
+      padding: 0 14px 12px;
+    }
+
+    .support-quick-label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .quick-list {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .quick-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .quick-btn {
+      flex: 0 0 auto;
+      min-height: 31px;
+      padding: 0 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font: inherit;
+      font-size: 10px;
+      font-weight: 650;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .quick-btn:hover {
+      color: var(--text);
+      border-color: rgba(139,92,246,.25);
+      background: rgba(139,92,246,.07);
+    }
+
+    /* Composer */
+
+    .support-composer {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 9px;
+      padding: 12px 14px 14px;
+      border-top: 1px solid rgba(255,255,255,.055);
+      background: rgba(8,10,16,.35);
+    }
+
+    .support-input-wrap {
+      flex: 1;
+      position: relative;
+    }
+
+    .support-input {
+      width: 100%;
+      min-height: 43px;
+      max-height: 110px;
+      resize: none;
+      padding: 12px 43px 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      outline: none;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      font: inherit;
+      font-size: 12px;
+      line-height: 1.45;
+      transition: .2s ease;
+    }
+
+    .support-input::placeholder {
+      color: var(--muted);
+    }
+
+    .support-input:focus {
+      border-color: rgba(139,92,246,.42);
+      box-shadow: 0 0 0 3px rgba(139,92,246,.07);
+    }
+
+    .support-input-count {
+      position: absolute;
+      right: 11px;
+      bottom: 7px;
+      color: var(--muted);
+      font-size: 8px;
+      pointer-events: none;
+    }
+
+    .support-send {
+      width: 43px;
+      height: 43px;
+      flex: 0 0 43px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #7c3aed
+      );
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 9px 25px rgba(124,58,237,.2);
+      transition: .2s ease;
+    }
+
+    .support-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(124,58,237,.28);
+    }
+
+    .support-send:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .support-send svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+      .support-container {
+        height: calc(100vh - 82px);
+        min-height: 0;
+        padding: 11px 10px 10px;
+      }
+
+      .support-header {
+        padding-bottom: 11px;
+      }
+
+      .support-back {
+        width: 39px;
+        height: 39px;
+        flex-basis: 39px;
+      }
+
+      .support-avatar {
+        width: 39px;
+        height: 39px;
+        flex-basis: 39px;
+        border-radius: 12px;
+      }
+
+      .support-agent-name {
+        font-size: 13px;
+      }
+
+      .support-chat {
+        border-radius: 19px;
+      }
+
+      .support-notice {
+        margin: 10px 10px 0;
+      }
+
+      .support-messages {
+        padding: 15px 11px 10px;
+      }
+
+      .message-wrap {
+        max-width: 84%;
+      }
+
+      .message-bubble {
+        font-size: 12px;
+      }
+
+      .support-quick {
+        padding: 0 10px 10px;
+      }
+
+      .support-composer {
+        padding: 10px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      .support-container {
+        padding-top: 8px;
+      }
+
+      .support-header {
+        padding-bottom: 8px;
+      }
+
+      .support-notice {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="support-page">
+
+    <main class="support-container">
+
+      <!-- Header -->
+      <header class="support-header">
+
+        <div class="support-header-left">
+
+          <button
+            class="support-back"
+            type="button"
+            onclick="history.back()"
+            aria-label="Go back"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5"/>
+              <path d="M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <div class="support-agent">
+
+            <div class="support-avatar">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/>
+                <path d="M8 11h.01"/>
+                <path d="M12 11h.01"/>
+                <path d="M16 11h.01"/>
+              </svg>
+
+              <span class="support-online-dot"></span>
+
+            </div>
+
+            <div class="support-agent-info">
+
+              <h1 class="support-agent-name">
+                Brocode Support
+              </h1>
+
+              <div class="support-agent-status">
+                <span>●</span>
+                Usually replies quickly
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button
+          class="support-header-action"
+          id="clearChatBtn"
+          type="button"
+          title="Clear conversation"
+          aria-label="Clear conversation"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M4 7h16"/>
+            <path d="M9 7V4h6v3"/>
+            <path d="M7 7l1 14h8l1-14"/>
+            <path d="M10 11v6"/>
+            <path d="M14 11v6"/>
+          </svg>
+        </button>
+
+      </header>
+
+
+      <!-- Chat -->
+      <section class="support-chat">
+
+        <div class="support-notice">
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 10v6"/>
+            <path d="M12 7h.01"/>
+          </svg>
+
+          <span>
+            This is a private conversation between you and Brocode Support.
+            Please don't share passwords or sensitive account information.
+          </span>
+
+        </div>
+
+
+        <!-- Messages -->
+        <div
+          class="support-messages"
+          id="supportMessages"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- Quick Questions -->
+        <div class="support-quick">
+
+          <div class="support-quick-label">
+            Quick questions
+          </div>
+
+          <div class="quick-list">
+
+            <button
+              class="quick-btn"
+              type="button"
+              data-question="How do I create a post?"
+            >
+              How do I create a post?
+            </button>
+
+            <button
+              class="quick-btn"
+              type="button"
+              data-question="How does creator level work?"
+            >
+              Creator level
+            </button>
+
+            <button
+              class="quick-btn"
+              type="button"
+              data-question="How can I change my username?"
+            >
+              Change username
+            </button>
+
+            <button
+              class="quick-btn"
+              type="button"
+              data-question="I found a problem with the app."
+            >
+              Report a problem
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- Composer -->
+        <form
+          class="support-composer"
+          id="supportForm"
+        >
+
+          <div class="support-input-wrap">
+
+            <textarea
+              class="support-input"
+              id="supportInput"
+              rows="1"
+              maxlength="1000"
+              placeholder="Write a message..."
+              autocomplete="off"
+            ></textarea>
+
+            <span
+              class="support-input-count"
+              id="inputCount"
+            >
+              0/1000
+            </span>
+
+          </div>
+
+          <button
+            class="support-send"
+            id="supportSend"
+            type="submit"
+            aria-label="Send message"
+            title="Send message"
+            disabled
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+            >
+              <path d="M22 2 11 13"/>
+              <path d="m22 2-7 20-4-9-9-4Z"/>
+            </svg>
+          </button>
+
+        </form>
+
+      </section>
+
+    </main>
+
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Main navigation">
+
+      <a
+        href="index.html"
+        class="bottom-nav-item"
+      >
+        <span class="bottom-nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 10.5 12 3l9 7.5"/>
+            <path d="M5.5 9.5V21h13V9.5"/>
+            <path d="M9.5 21v-6h5v6"/>
+          </svg>
+        </span>
+        <span>Home</span>
+      </a>
+
+      <a
+        href="explore.html"
+        class="bottom-nav-item"
+      >
+        <span class="bottom-nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="6.5"/>
+            <path d="m16 16 5 5"/>
+          </svg>
+        </span>
+        <span>Explore</span>
+      </a>
+
+      <a
+        href="support.html"
+        class="bottom-nav-item active"
+      >
+        <span class="bottom-nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2v-5.5A7.5 7.5 0 1 1 20 11.5Z"/>
+            <path d="M8 11h.01"/>
+            <path d="M12 11h.01"/>
+            <path d="M16 11h.01"/>
+          </svg>
+        </span>
+        <span>Chat</span>
+      </a>
+
+      <a
+        href="profile.html"
+        class="bottom-nav-item"
+      >
+        <span class="bottom-nav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="3.5"/>
+            <path d="M5 21a7 7 0 0 1 14 0"/>
+          </svg>
+        </span>
+        <span>Profile</span>
+      </a>
+
+    </nav>
+
+  </div>
+
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script src="js/app.js"></script>
+
+  <script>
+    /* =========================================
+       BROCODE SUPPORT CHAT
+       Demo/localStorage version
+    ========================================= */
+
+    const CHAT_KEY = "brocode_support_chat_v1";
+
+    const messagesEl = document.getElementById("supportMessages");
+    const inputEl = document.getElementById("supportInput");
+    const sendBtn = document.getElementById("supportSend");
+    const formEl = document.getElementById("supportForm");
+    const inputCount = document.getElementById("inputCount");
+    const clearChatBtn = document.getElementById("clearChatBtn");
+
+
+    function escapeHTML(value) {
+      if (
+        window.BrocodeApp &&
+        typeof window.BrocodeApp.escapeHTML === "function"
+      ) {
+        return window.BrocodeApp.escapeHTML(value);
+      }
+
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    function getChat() {
+      try {
+        const data = JSON.parse(
+          localStorage.getItem(CHAT_KEY) || "[]"
+        );
+
+        return Array.isArray(data) ? data : [];
+      } catch {
+        return [];
+      }
+    }
+
+
+    function saveChat(messages) {
+      localStorage.setItem(
+        CHAT_KEY,
+        JSON.stringify(messages)
+      );
+    }
+
+
+    function currentTime() {
+      return new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+
+    function createDefaultChat() {
+      return [
+        {
+          id: "welcome",
+          type: "support",
+          text: "Hey! 👋 Welcome to Brocode Support.",
+          time: currentTime()
+        },
+        {
+          id: "help",
+          type: "support",
+          text: "How can we help you today? You can ask us anything about your account, posts, creator level, or the app.",
+          time: currentTime()
+        }
+      ];
+    }
+
+
+    function renderMessage(message) {
+      const type =
+        message.type === "user"
+          ? "user"
+          : "support";
+
+      return `
+        <div class="message ${type}">
+
+          <div class="message-wrap">
+
+            <div class="message-bubble">
+              ${escapeHTML(message.text)}
+            </div>
+
+            <div class="message-time">
+              ${escapeHTML(message.time || "")}
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    }
+
+
+    function renderChat() {
+      let messages = getChat();
+
+      if (!messages.length) {
+        messages = createDefaultChat();
+        saveChat(messages);
+      }
+
+      messagesEl.innerHTML = `
+        <div class="message-day">
+          Today
+        </div>
+
+        ${messages.map(renderMessage).join("")}
+      `;
+
+      requestAnimationFrame(() => {
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      });
+    }
+
+
+    function updateComposer() {
+      const value = inputEl.value.trim();
+
+      sendBtn.disabled = !value;
+
+      inputCount.textContent =
+        `${inputEl.value.length}/1000`;
+    }
+
+
+    function autoResize() {
+      inputEl.style.height = "auto";
+
+      inputEl.style.height =
+        Math.min(inputEl.scrollHeight, 110) + "px";
+    }
+
+
+    function addMessage(text, type = "user") {
+      const cleanText = String(text || "").trim();
+
+      if (!cleanText) return;
+
+      const messages = getChat();
+
+      messages.push({
+        id:
+          Date.now().toString() +
+          Math.random().toString(16).slice(2),
+
+        type,
+
+        text: cleanText,
+
+        time: currentTime()
+      });
+
+      saveChat(messages);
+
+      renderChat();
+    }
+
+
+    function sendMessage(text) {
+      const cleanText = String(text || "").trim();
+
+      if (!cleanText) return;
+
+      addMessage(cleanText, "user");
+
+      inputEl.value = "";
+
+      updateComposer();
+      autoResize();
+
+      /*
+       * Demo response.
+       * Real support system will later connect
+       * to backend/admin support dashboard.
+       */
+
+      setTimeout(() => {
+
+        const response =
+          "Thanks for reaching out! Your message has been received. A Brocode Support member will get back to you soon.";
+
+        addMessage(response, "support");
+
+      }, 850);
+    }
+
+
+    formEl.addEventListener("submit", event => {
+      event.preventDefault();
+
+      sendMessage(inputEl.value);
+    });
+
+
+    inputEl.addEventListener("input", () => {
+      updateComposer();
+      autoResize();
+    });
+
+
+    inputEl.addEventListener("keydown", event => {
+
+      if (
+        event.key === "Enter" &&
+        !event.shiftKey
+      ) {
+        event.preventDefault();
+
+        if (!sendBtn.disabled) {
+          sendMessage(inputEl.value);
+        }
+      }
+
+    });
+
+
+    document.querySelectorAll(
+      "[data-question]"
+    ).forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const question =
+          button.dataset.question || "";
+
+        inputEl.value = question;
+
+        updateComposer();
+        autoResize();
+
+        inputEl.focus();
+
+      });
+
+    });
+
+
+    clearChatBtn.addEventListener("click", () => {
+
+      const confirmed = confirm(
+        "Clear your support conversation?"
+      );
+
+      if (!confirmed) return;
+
+      localStorage.removeItem(CHAT_KEY);
+
+      renderChat();
+
+      if (
+        window.BrocodeApp &&
+        typeof window.BrocodeApp.showToast === "function"
+      ) {
+        window.BrocodeApp.showToast(
+          "Conversation cleared"
+        );
+      }
+
+    });
+
+
+    renderChat();
+    updateComposer();
+    autoResize();
+  </script>
+
+</body>
+</html>
