@@ -3,41 +3,80 @@
    ========================================================= */
 
 :root {
---bg: #17120F;
---bg-soft: #211A16;
+  /* ===============================
+     PREMIUM BACKGROUND
+     =============================== */
 
---surface: #261E19;
---surface-2: #30251F;
---surface-3: #3A2D25;
+  --bg: #211714;
+  --bg-soft: #2A1D19;
 
+  /* ===============================
+     PREMIUM SURFACES
+     =============================== */
 
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.13);
+  --surface: #30221D;
+  --surface-2: #382822;
+  --surface-3: #432F28;
 
- --text: #FFFFFF;
---text-soft: #E8DED5;
---text-muted: #B8A99D;
+  /* ===============================
+     BORDERS
+     =============================== */
 
---primary: #C9A27E;
---primary-light: #E4C6A8;
---primary-dark: #9F7655;
-   
-  --success: #35d49a;
-  --danger: #ff5c7a;
+  --border: rgba(236, 216, 198, 0.10);
+  --border-strong: rgba(236, 216, 198, 0.18);
+
+  /* ===============================
+     TEXT
+     =============================== */
+
+  --text: #FFFDFC;
+  --text-soft: #E9DCD2;
+  --text-muted: #B9A79B;
+
+  /* ===============================
+     BEIGE / CHAMPAGNE ACCENT
+     =============================== */
+
+  --primary: #D6B08A;
+  --primary-light: #F0D5B8;
+  --primary-dark: #A87E5A;
+
+  /* ===============================
+     STATUS
+     =============================== */
+
+  --success: #52D6A2;
+  --danger: #FF7188;
+
+  /* ===============================
+     RADIUS
+     =============================== */
 
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 22px;
   --radius-xl: 28px;
 
-  --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.18);
-  --shadow-md: 0 18px 45px rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.38);
+  /* ===============================
+     PREMIUM SHADOWS
+     =============================== */
+
+  --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 18px 45px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.42);
+
+  /* ===============================
+     LAYOUT
+     =============================== */
 
   --container: 760px;
 
   --nav-height: 76px;
   --topbar-height: 68px;
+
+  /* ===============================
+     MOTION
+     =============================== */
 
   --transition-fast: 160ms ease;
   --transition: 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
