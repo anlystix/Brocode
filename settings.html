@@ -1,1 +1,2080 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>settings — Community</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/responsive.css"></head><body><main class="auth-page"><div class="auth-card"><div class="brand large">Community</div><h1>Settings</h1><p class="muted">Page ready for implementation.</p><a class="primary-btn" href="index.html">Back to Home</a></div></main><script src="js/app.js"></script><script src="js/auth.js"></script><script src="js/posts.js"></script><script src="js/profile.js"></script><script src="js/explore.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#080a10"
+  >
+
+  <title>Settings — Brocode</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+
+    /* =====================================================
+       SETTINGS PAGE
+       ===================================================== */
+
+    .settings-page {
+      min-height: 100vh;
+
+      max-width: 720px;
+
+      margin: 0 auto;
+
+      padding:
+        18px
+        16px
+        110px;
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .settings-topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-bottom: 24px;
+    }
+
+
+    .back-button {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: var(--surface);
+
+      color: var(--text);
+
+      text-decoration: none;
+
+      font-size: 17px;
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+
+    .back-button:hover {
+      background: var(--surface-2);
+
+      transform: translateX(-2px);
+    }
+
+
+    .settings-title h1 {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: 19px;
+      font-weight: 800;
+
+      letter-spacing: -.4px;
+    }
+
+
+    .settings-title p {
+      margin: 3px 0 0;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+    }
+
+
+    /* =====================================================
+       SECTION
+       ===================================================== */
+
+    .settings-section {
+      margin-bottom: 20px;
+    }
+
+
+    .section-title {
+      margin: 0 0 9px 3px;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      letter-spacing: .65px;
+    }
+
+
+    .settings-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18, 22, 32, .98),
+          rgba(11, 14, 21, .98)
+        );
+
+      overflow: hidden;
+    }
+
+
+    /* =====================================================
+       ACCOUNT HEADER
+       ===================================================== */
+
+    .account-summary {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      padding: 17px;
+    }
+
+
+    .account-avatar {
+      width: 52px;
+      height: 52px;
+
+      display: grid;
+      place-items: center;
+
+      flex-shrink: 0;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #8b5cf6,
+          #5948dc
+        );
+
+      color: #fff;
+
+      font-size: 19px;
+      font-weight: 800;
+
+      box-shadow:
+        0 10px 25px
+        rgba(139, 92, 246, .18);
+    }
+
+
+    .account-info {
+      min-width: 0;
+    }
+
+
+    .account-name {
+      margin: 0 0 3px;
+
+      color: var(--text);
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+
+    .account-username {
+      margin: 0;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+    }
+
+
+    /* =====================================================
+       SETTING ROW
+       ===================================================== */
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      width: 100%;
+
+      padding: 14px 16px;
+
+      border: 0;
+      border-top: 1px solid var(--border);
+
+      background: transparent;
+
+      color: inherit;
+
+      font-family: inherit;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      transition:
+        background .2s ease;
+    }
+
+
+    .setting-row:hover {
+      background:
+        rgba(255, 255, 255, .018);
+    }
+
+
+    .setting-icon {
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      flex-shrink: 0;
+
+      border-radius: 10px;
+
+      background:
+        rgba(139, 92, 246, .07);
+
+      color: #c4b5fd;
+
+      font-size: 13px;
+    }
+
+
+    .setting-content {
+      flex: 1;
+
+      min-width: 0;
+    }
+
+
+    .setting-name {
+      display: block;
+
+      margin-bottom: 3px;
+
+      color: var(--text);
+
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+
+    .setting-description {
+      display: block;
+
+      color: var(--muted-2);
+
+      font-size: 8px;
+
+      line-height: 1.45;
+    }
+
+
+    .setting-arrow {
+      color: var(--muted-2);
+
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       SAVED
+       ===================================================== */
+
+    .saved-row {
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       NOTIFICATION TOGGLE
+       ===================================================== */
+
+    .toggle {
+      position: relative;
+
+      width: 38px;
+      height: 21px;
+
+      flex-shrink: 0;
+
+      border-radius: 99px;
+
+      background: var(--surface-3);
+
+      transition:
+        background .2s ease;
+
+      cursor: pointer;
+    }
+
+
+    .toggle::after {
+      content: "";
+
+      position: absolute;
+
+      width: 15px;
+      height: 15px;
+
+      top: 3px;
+      left: 3px;
+
+      border-radius: 50%;
+
+      background: #fff;
+
+      transition:
+        transform .2s ease;
+    }
+
+
+    .toggle.active {
+      background: var(--primary);
+    }
+
+
+    .toggle.active::after {
+      transform: translateX(17px);
+    }
+
+
+    /* =====================================================
+       DANGER
+       ===================================================== */
+
+    .danger-row .setting-icon {
+      background:
+        rgba(239, 68, 68, .07);
+
+      color: #fca5a5;
+    }
+
+
+    .danger-row .setting-name {
+      color: #fca5a5;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .settings-footer {
+      padding: 4px 0 20px;
+
+      text-align: center;
+    }
+
+
+    .settings-footer p {
+      margin: 0;
+
+      color: var(--muted-2);
+
+      font-size: 8px;
+    }
+
+
+    .version {
+      margin-top: 5px !important;
+
+      opacity: .65;
+    }
+
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    .settings-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 1000;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 18px;
+
+      background:
+        rgba(0, 0, 0, .68);
+
+      backdrop-filter: blur(8px);
+    }
+
+
+    .settings-modal.show {
+      display: flex;
+    }
+
+
+    .modal-card {
+      width: 100%;
+      max-width: 410px;
+
+      padding: 20px;
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #151925,
+          #0d1018
+        );
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, .40);
+    }
+
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 18px;
+    }
+
+
+    .modal-header h2 {
+      margin: 0;
+
+      color: var(--text);
+
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+
+    .modal-close {
+      width: 31px;
+      height: 31px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: var(--surface);
+
+      color: var(--muted);
+
+      cursor: pointer;
+    }
+
+
+    .modal-field {
+      margin-bottom: 13px;
+    }
+
+
+    .modal-field label {
+      display: block;
+
+      margin: 0 0 6px 2px;
+
+      color: var(--muted);
+
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+
+    .modal-input {
+      width: 100%;
+      height: 43px;
+
+      padding: 0 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      outline: none;
+
+      background: var(--surface);
+
+      color: var(--text);
+
+      font-family: inherit;
+
+      font-size: 10px;
+    }
+
+
+    .modal-input:focus {
+      border-color:
+        rgba(139, 92, 246, .55);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, .07);
+    }
+
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+
+      margin-top: 17px;
+    }
+
+
+    .modal-button {
+      flex: 1;
+
+      height: 42px;
+
+      border-radius: 11px;
+
+      font-family: inherit;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    .modal-cancel {
+      border: 1px solid var(--border);
+
+      background: var(--surface);
+
+      color: var(--text);
+    }
+
+
+    .modal-save {
+      border: 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          #6d5dfc
+        );
+
+      color: #fff;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
+    @media (max-width: 520px) {
+
+      .settings-page {
+        padding:
+          14px
+          12px
+          100px;
+      }
+
+
+      .account-summary {
+        padding: 15px;
+      }
+
+
+      .setting-row {
+        padding: 13px 14px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="app-shell">
+
+
+    <main class="settings-page">
+
+
+      <!-- =================================================
+           HEADER
+           ================================================= -->
+
+      <header class="settings-topbar">
+
+        <a
+          href="profile.html"
+          class="back-button"
+          aria-label="Back to profile"
+        >
+          ←
+        </a>
+
+
+        <div class="settings-title">
+
+          <h1>
+            Settings
+          </h1>
+
+          <p>
+            Manage your account and preferences.
+          </p>
+
+        </div>
+
+      </header>
+
+
+      <!-- =================================================
+           ACCOUNT
+           ================================================= -->
+
+      <section class="settings-section">
+
+        <h2 class="section-title">
+          Account
+        </h2>
+
+
+        <div class="settings-card">
+
+
+          <div class="account-summary">
+
+            <div
+              id="accountAvatar"
+              class="account-avatar"
+            >
+              B
+            </div>
+
+
+            <div class="account-info">
+
+              <h3
+                id="accountName"
+                class="account-name"
+              >
+                Brocode User
+              </h3>
+
+
+              <p
+                id="accountUsername"
+                class="account-username"
+              >
+                @brocode_user
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- EDIT NAME -->
+
+          <button
+            type="button"
+            class="setting-row"
+            id="editNameButton"
+          >
+
+            <span class="setting-icon">
+              ✎
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Display Name
+              </span>
+
+              <span class="setting-description">
+                Change the name shown on your profile.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </button>
+
+
+          <!-- USERNAME -->
+
+          <button
+            type="button"
+            class="setting-row"
+            id="editUsernameButton"
+          >
+
+            <span class="setting-icon">
+              @
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Username
+              </span>
+
+              <span class="setting-description">
+                Your unique community username.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </button>
+
+
+          <!-- PASSWORD -->
+
+          <button
+            type="button"
+            class="setting-row"
+            id="changePasswordButton"
+          >
+
+            <span class="setting-icon">
+              ◆
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Password
+              </span>
+
+              <span class="setting-description">
+                Change your account password.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           CONTENT
+           ================================================= -->
+
+      <section class="settings-section">
+
+        <h2 class="section-title">
+          Your Content
+        </h2>
+
+
+        <div class="settings-card">
+
+
+          <a
+            href="saved.html"
+            class="setting-row saved-row"
+          >
+
+            <span class="setting-icon">
+              ☆
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Saved Posts
+              </span>
+
+              <span class="setting-description">
+                View posts you saved for later.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </a>
+
+
+          <a
+            href="notifications.html"
+            class="setting-row saved-row"
+          >
+
+            <span class="setting-icon">
+              ♢
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Notifications
+              </span>
+
+              <span class="setting-description">
+                See activity and creator notifications.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </a>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           PREFERENCES
+           ================================================= -->
+
+      <section class="settings-section">
+
+        <h2 class="section-title">
+          Preferences
+        </h2>
+
+
+        <div class="settings-card">
+
+
+          <button
+            type="button"
+            class="setting-row"
+            id="notificationToggleRow"
+          >
+
+            <span class="setting-icon">
+              ♧
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Push Notifications
+              </span>
+
+              <span class="setting-description">
+                Receive important activity updates.
+              </span>
+
+            </span>
+
+
+            <span
+              id="notificationToggle"
+              class="toggle active"
+              aria-label="Toggle notifications"
+            ></span>
+
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           SUPPORT
+           ================================================= -->
+
+      <section class="settings-section">
+
+        <h2 class="section-title">
+          Help & Support
+        </h2>
+
+
+        <div class="settings-card">
+
+
+          <a
+            href="support.html"
+            class="setting-row saved-row"
+          >
+
+            <span class="setting-icon">
+              ?
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Contact Support
+              </span>
+
+              <span class="setting-description">
+                Chat with Brocode support.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </a>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           ACCOUNT ACTIONS
+           ================================================= -->
+
+      <section class="settings-section">
+
+        <h2 class="section-title">
+          Account Actions
+        </h2>
+
+
+        <div class="settings-card">
+
+
+          <button
+            type="button"
+            class="setting-row"
+            id="logoutButton"
+          >
+
+            <span class="setting-icon">
+              ↪
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Log Out
+              </span>
+
+              <span class="setting-description">
+                Sign out from this device.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="setting-row danger-row"
+            id="deleteAccountButton"
+          >
+
+            <span class="setting-icon">
+              ×
+            </span>
+
+
+            <span class="setting-content">
+
+              <span class="setting-name">
+                Delete Account
+              </span>
+
+              <span class="setting-description">
+                Permanently remove your account.
+              </span>
+
+            </span>
+
+
+            <span class="setting-arrow">
+              ›
+            </span>
+
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           FOOTER
+           ================================================= -->
+
+      <footer class="settings-footer">
+
+        <p>
+          Brocode Community
+        </p>
+
+        <p class="version">
+          Version 1.0.0 · Demo
+        </p>
+
+      </footer>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         BOTTOM NAV
+         ===================================================== -->
+
+    <nav class="bottom-nav">
+
+
+      <a
+        href="index.html"
+        class="nav-item"
+      >
+
+        <span class="nav-icon">
+          ⌂
+        </span>
+
+        <span class="nav-label">
+          Home
+        </span>
+
+      </a>
+
+
+      <a
+        href="explore.html"
+        class="nav-item"
+      >
+
+        <span class="nav-icon">
+          ⌕
+        </span>
+
+        <span class="nav-label">
+          Explore
+        </span>
+
+      </a>
+
+
+      <a
+        href="support.html"
+        class="nav-item"
+      >
+
+        <span class="nav-icon">
+          ◌
+        </span>
+
+        <span class="nav-label">
+          Chat
+        </span>
+
+      </a>
+
+
+      <a
+        href="profile.html"
+        class="nav-item active"
+      >
+
+        <span class="nav-icon">
+          ◎
+        </span>
+
+        <span class="nav-label">
+          Profile
+        </span>
+
+      </a>
+
+
+    </nav>
+
+
+  </div>
+
+
+  <!-- =====================================================
+       EDIT MODAL
+       ===================================================== -->
+
+  <div
+    id="settingsModal"
+    class="settings-modal"
+  >
+
+    <div class="modal-card">
+
+
+      <div class="modal-header">
+
+        <h2 id="modalTitle">
+          Edit Profile
+        </h2>
+
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        id="modalFields"
+      ></div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="modal-button modal-cancel"
+          id="modalCancel"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          type="button"
+          class="modal-button modal-save"
+          id="modalSave"
+        >
+          Save Changes
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script src="js/app.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       USER
+       ===================================================== */
+
+    function getUser() {
+
+      try {
+
+        const saved =
+          localStorage.getItem(
+            "community_user"
+          );
+
+
+        if (saved) {
+
+          return JSON.parse(saved);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Could not load user.",
+          error
+        );
+
+      }
+
+
+      return {
+        name: "Brocode User",
+        username: "@brocode_user"
+      };
+
+    }
+
+
+    let user =
+      getUser();
+
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const accountName =
+      document.getElementById(
+        "accountName"
+      );
+
+    const accountUsername =
+      document.getElementById(
+        "accountUsername"
+      );
+
+    const accountAvatar =
+      document.getElementById(
+        "accountAvatar"
+      );
+
+    const modal =
+      document.getElementById(
+        "settingsModal"
+      );
+
+    const modalTitle =
+      document.getElementById(
+        "modalTitle"
+      );
+
+    const modalFields =
+      document.getElementById(
+        "modalFields"
+      );
+
+    const modalSave =
+      document.getElementById(
+        "modalSave"
+      );
+
+
+    let currentEdit =
+      null;
+
+
+    /* =====================================================
+       RENDER ACCOUNT
+       ===================================================== */
+
+    function renderAccount() {
+
+      accountName.textContent =
+        user.name ||
+        "Brocode User";
+
+
+      accountUsername.textContent =
+        user.username ||
+        "@brocode_user";
+
+
+      accountAvatar.textContent =
+        (
+          user.name ||
+          "B"
+        )
+          .trim()
+          .charAt(0)
+          .toUpperCase();
+
+    }
+
+
+    renderAccount();
+
+
+    /* =====================================================
+       SAVE USER
+       ===================================================== */
+
+    function saveUser() {
+
+      localStorage.setItem(
+        "community_user",
+        JSON.stringify(user)
+      );
+
+
+      renderAccount();
+
+    }
+
+
+    /* =====================================================
+       OPEN MODAL
+       ===================================================== */
+
+    function openModal(
+      type
+    ) {
+
+      currentEdit =
+        type;
+
+
+      modalFields.innerHTML =
+        "";
+
+
+      if (type === "name") {
+
+        modalTitle.textContent =
+          "Change Display Name";
+
+
+        modalFields.innerHTML = `
+
+          <div class="modal-field">
+
+            <label for="modalInput">
+              Display Name
+            </label>
+
+            <input
+              id="modalInput"
+              class="modal-input"
+              type="text"
+              maxlength="40"
+              value="${escapeHTML(
+                user.name || ""
+              )}"
+              placeholder="Enter your name"
+            >
+
+          </div>
+
+        `;
+
+      }
+
+
+      if (type === "username") {
+
+        modalTitle.textContent =
+          "Change Username";
+
+
+        modalFields.innerHTML = `
+
+          <div class="modal-field">
+
+            <label for="modalInput">
+              Username
+            </label>
+
+            <input
+              id="modalInput"
+              class="modal-input"
+              type="text"
+              maxlength="20"
+              value="${escapeHTML(
+                (
+                  user.username ||
+                  "@brocode_user"
+                ).replace(
+                  "@",
+                  ""
+                )
+              )}"
+              placeholder="username"
+            >
+
+          </div>
+
+        `;
+
+      }
+
+
+      if (type === "password") {
+
+        modalTitle.textContent =
+          "Change Password";
+
+
+        modalFields.innerHTML = `
+
+          <div class="modal-field">
+
+            <label for="oldPassword">
+              Current Password
+            </label>
+
+            <input
+              id="oldPassword"
+              class="modal-input"
+              type="password"
+              placeholder="Current password"
+            >
+
+          </div>
+
+
+          <div class="modal-field">
+
+            <label for="newPassword">
+              New Password
+            </label>
+
+            <input
+              id="newPassword"
+              class="modal-input"
+              type="password"
+              placeholder="New password"
+            >
+
+          </div>
+
+
+          <div class="modal-field">
+
+            <label for="confirmNewPassword">
+              Confirm New Password
+            </label>
+
+            <input
+              id="confirmNewPassword"
+              class="modal-input"
+              type="password"
+              placeholder="Confirm new password"
+            >
+
+          </div>
+
+        `;
+
+      }
+
+
+      modal.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          document
+            .getElementById(
+              "modalInput"
+            )
+            ?.focus();
+
+        },
+        50
+      );
+
+    }
+
+
+    /* =====================================================
+       CLOSE MODAL
+       ===================================================== */
+
+    function closeModal() {
+
+      modal.classList.remove(
+        "show"
+      );
+
+      currentEdit =
+        null;
+
+    }
+
+
+    document
+      .getElementById("modalClose")
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    document
+      .getElementById("modalCancel")
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+
+    modal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          modal
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SAVE MODAL
+       ===================================================== */
+
+    modalSave.addEventListener(
+      "click",
+      () => {
+
+        if (
+          currentEdit ===
+          "name"
+        ) {
+
+          const input =
+            document.getElementById(
+              "modalInput"
+            );
+
+
+          const value =
+            input.value.trim();
+
+
+          if (
+            value.length < 2
+          ) {
+
+            showToast(
+              "Name must contain at least 2 characters."
+            );
+
+            return;
+
+          }
+
+
+          user.name =
+            value;
+
+
+          saveUser();
+
+          closeModal();
+
+          showToast(
+            "Display name updated."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          currentEdit ===
+          "username"
+        ) {
+
+          const input =
+            document.getElementById(
+              "modalInput"
+            );
+
+
+          const value =
+            input.value
+              .trim()
+              .toLowerCase()
+              .replace(
+                /^@/,
+                ""
+              );
+
+
+          if (
+            !/^[a-z0-9_]{3,20}$/.test(
+              value
+            )
+          ) {
+
+            showToast(
+              "Username must be 3–20 characters."
+            );
+
+            return;
+
+          }
+
+
+          user.username =
+            "@" + value;
+
+
+          saveUser();
+
+          closeModal();
+
+          showToast(
+            "Username updated."
+          );
+
+          return;
+
+        }
+
+
+        if (
+          currentEdit ===
+          "password"
+        ) {
+
+          const newPassword =
+            document.getElementById(
+              "newPassword"
+            ).value;
+
+
+          const confirmPassword =
+            document.getElementById(
+              "confirmNewPassword"
+            ).value;
+
+
+          if (
+            newPassword.length < 8
+          ) {
+
+            showToast(
+              "New password must contain at least 8 characters."
+            );
+
+            return;
+
+          }
+
+
+          if (
+            newPassword !==
+            confirmPassword
+          ) {
+
+            showToast(
+              "New passwords do not match."
+            );
+
+            return;
+
+          }
+
+
+          /*
+           * DEMO ONLY.
+           *
+           * Real password change will
+           * happen through the backend.
+           */
+
+          closeModal();
+
+          showToast(
+            "Password change will be connected to the backend."
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+
+    document
+      .getElementById(
+        "editNameButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            "name"
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "editUsernameButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            "username"
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "changePasswordButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            "password"
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       NOTIFICATIONS
+       ===================================================== */
+
+    const notificationToggle =
+      document.getElementById(
+        "notificationToggle"
+      );
+
+
+    const notificationState =
+      localStorage.getItem(
+        "brocode_notifications"
+      );
+
+
+    if (
+      notificationState ===
+      "false"
+    ) {
+
+      notificationToggle.classList.remove(
+        "active"
+      );
+
+    }
+
+
+    document
+      .getElementById(
+        "notificationToggleRow"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          notificationToggle.classList.toggle(
+            "active"
+          );
+
+
+          const enabled =
+            notificationToggle.classList.contains(
+              "active"
+            );
+
+
+          localStorage.setItem(
+            "brocode_notifications",
+            String(enabled)
+          );
+
+
+          showToast(
+            enabled
+              ? "Notifications enabled."
+              : "Notifications disabled."
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
+
+    document
+      .getElementById(
+        "logoutButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          const confirmed =
+            confirm(
+              "Are you sure you want to log out?"
+            );
+
+
+          if (!confirmed) {
+            return;
+          }
+
+
+          localStorage.removeItem(
+            "community_user"
+          );
+
+
+          showToast(
+            "Logged out successfully."
+          );
+
+
+          setTimeout(
+            () => {
+
+              window.location.href =
+                "login.html";
+
+            },
+            500
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       DELETE ACCOUNT
+       ===================================================== */
+
+    document
+      .getElementById(
+        "deleteAccountButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          const confirmed =
+            confirm(
+              "Delete your demo account? This cannot be undone."
+            );
+
+
+          if (!confirmed) {
+            return;
+          }
+
+
+          localStorage.removeItem(
+            "community_user"
+          );
+
+
+          showToast(
+            "Demo account removed."
+          );
+
+
+          setTimeout(
+            () => {
+
+              window.location.href =
+                "signup.html";
+
+            },
+            600
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       ESCAPE HTML
+       ===================================================== */
+
+    function escapeHTML(
+      value
+    ) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function showToast(
+      message
+    ) {
+
+      if (
+        window.BrocodeApp &&
+        typeof window.BrocodeApp.showToast ===
+          "function"
+      ) {
+
+        window.BrocodeApp.showToast(
+          message
+        );
+
+        return;
+
+      }
+
+
+      const toast =
+        document.getElementById(
+          "toast"
+        );
+
+
+      if (!toast) {
+        return;
+      }
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        2200
+      );
+
+    }
+
+  </script>
+
+</body>
+
+</html>
