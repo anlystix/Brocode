@@ -3,23 +3,25 @@
    ========================================================= */
 
 :root {
- --bg: #DBDBDB;
---bg-soft: #DBDBDB;
---surface: #DBDBDB;
---surface-2: #DBDBDB;
---surface-3: #DBDBDB;
+--bg: #17120F;
+--bg-soft: #211A16;
+
+--surface: #261E19;
+--surface-2: #30251F;
+--surface-3: #3A2D25;
+
 
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.13);
 
-  --text: #f5f7fb;
-  --text-soft: #a8afbd;
-  --text-muted: #707887;
+ --text: #FFFFFF;
+--text-soft: #E8DED5;
+--text-muted: #B8A99D;
 
-  --primary: #8b5cf6;
-  --primary-light: #a78bfa;
-  --primary-dark: #6d3ee8;
-
+--primary: #C9A27E;
+--primary-light: #E4C6A8;
+--primary-dark: #9F7655;
+   
   --success: #35d49a;
   --danger: #ff5c7a;
 
