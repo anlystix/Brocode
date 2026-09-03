@@ -3,11 +3,11 @@
    ========================================================= */
 
 :root {
-  --bg: #28398A;
-  --bg-soft: #23376E;
-  --surface: #1D3778;
-  --surface-2: #1D3778;
-  --surface-3: #1D3778;
+  --bg: #DBDBDB;
+--bg-soft: #D0D0D0;
+--surface: #FFFFFF;
+--surface-2: #F2F2F2;
+--surface-3: #E8E8E8;
 
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.13);
