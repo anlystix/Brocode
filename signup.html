@@ -1,1 +1,1561 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>signup — Community</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/responsive.css"></head><body><main class="auth-page"><div class="auth-card"><div class="brand large">Community</div><h1>Signup</h1><p class="muted">Page ready for implementation.</p><a class="primary-btn" href="index.html">Back to Home</a></div></main><script src="js/app.js"></script><script src="js/auth.js"></script><script src="js/posts.js"></script><script src="js/profile.js"></script><script src="js/explore.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b0d14"
+  >
+
+  <title>Create Account — Brocode</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/components.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/responsive.css"
+  >
+
+  <style>
+
+    /* =====================================================
+       SIGNUP PAGE
+       ===================================================== */
+
+    .auth-page {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 16px 60px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .auth-glow {
+      position: absolute;
+
+      width: 390px;
+      height: 390px;
+
+      top: -170px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(139, 92, 246, .16),
+          transparent 68%
+        );
+
+      pointer-events: none;
+    }
+
+
+    .auth-card {
+      width: 100%;
+      max-width: 430px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* =====================================================
+       BRAND
+       ===================================================== */
+
+    .auth-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin-bottom: 26px;
+    }
+
+
+    .auth-brand .brand-mark {
+      width: 52px;
+      height: 52px;
+
+      margin-bottom: 12px;
+
+      border-radius: 16px;
+
+      font-size: 20px;
+
+      box-shadow:
+        0 12px 35px rgba(139, 92, 246, .20);
+    }
+
+
+    .auth-brand strong {
+      color: var(--text);
+
+      font-size: 20px;
+      font-weight: 800;
+
+      letter-spacing: -.4px;
+    }
+
+
+    .auth-brand span {
+      margin-top: 4px;
+
+      color: var(--muted-2);
+
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       HEADING
+       ===================================================== */
+
+    .auth-heading {
+      text-align: center;
+
+      margin-bottom: 22px;
+    }
+
+
+    .auth-heading h1 {
+      margin: 0 0 7px;
+
+      color: var(--text);
+
+      font-size: 25px;
+      font-weight: 800;
+
+      letter-spacing: -.6px;
+    }
+
+
+    .auth-heading p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       FORM CARD
+       ===================================================== */
+
+    .auth-form-card {
+      padding: 22px;
+
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 24, 35, .98),
+          rgba(13, 16, 24, .98)
+        );
+
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, .22);
+    }
+
+
+    /* =====================================================
+       FORM FIELD
+       ===================================================== */
+
+    .auth-field {
+      margin-bottom: 15px;
+    }
+
+
+    .auth-field label {
+      display: block;
+
+      margin: 0 0 7px 2px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+
+    .input-wrap {
+      position: relative;
+    }
+
+
+    .auth-input {
+      width: 100%;
+      height: 47px;
+
+      padding: 0 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      outline: none;
+
+      background: var(--surface);
+
+      color: var(--text);
+
+      font-family: inherit;
+      font-size: 12px;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+
+    .auth-input::placeholder {
+      color: var(--muted-2);
+    }
+
+
+    .auth-input:focus {
+      border-color: rgba(139, 92, 246, .58);
+
+      background: var(--surface-2);
+
+      box-shadow:
+        0 0 0 4px rgba(139, 92, 246, .08);
+    }
+
+
+    .auth-input.valid {
+      border-color: rgba(34, 197, 94, .45);
+    }
+
+
+    .auth-input.invalid {
+      border-color: rgba(239, 68, 68, .45);
+    }
+
+
+    /* =====================================================
+       USERNAME PREFIX
+       ===================================================== */
+
+    .username-wrap {
+      position: relative;
+    }
+
+
+    .username-prefix {
+      position: absolute;
+
+      left: 14px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--muted-2);
+
+      font-size: 12px;
+
+      pointer-events: none;
+    }
+
+
+    .username-input {
+      padding-left: 28px;
+    }
+
+
+    /* =====================================================
+       PASSWORD
+       ===================================================== */
+
+    .password-input {
+      padding-right: 48px;
+    }
+
+
+    .password-toggle {
+      position: absolute;
+
+      top: 50%;
+      right: 9px;
+
+      transform: translateY(-50%);
+
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      border: 0;
+      border-radius: 9px;
+
+      background: transparent;
+
+      color: var(--muted-2);
+
+      cursor: pointer;
+
+      font-size: 14px;
+    }
+
+
+    .password-toggle:hover {
+      background: var(--surface-3);
+
+      color: var(--text);
+    }
+
+
+    /* =====================================================
+       FIELD MESSAGE
+       ===================================================== */
+
+    .field-message {
+      min-height: 14px;
+
+      margin: 5px 2px 0;
+
+      color: var(--muted-2);
+
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+
+    .field-message.success {
+      color: #86efac;
+    }
+
+
+    .field-message.error {
+      color: #fca5a5;
+    }
+
+
+    /* =====================================================
+       PASSWORD STRENGTH
+       ===================================================== */
+
+    .password-strength {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      margin-top: 7px;
+    }
+
+
+    .strength-bars {
+      display: flex;
+      gap: 3px;
+
+      flex: 1;
+    }
+
+
+    .strength-bar {
+      height: 3px;
+
+      flex: 1;
+
+      border-radius: 99px;
+
+      background: var(--surface-3);
+    }
+
+
+    .strength-text {
+      min-width: 45px;
+
+      color: var(--muted-2);
+
+      font-size: 8px;
+
+      text-align: right;
+    }
+
+
+    /* =====================================================
+       TERMS
+       ===================================================== */
+
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+
+      margin: 5px 1px 18px;
+    }
+
+
+    .terms-row input {
+      width: 14px;
+      height: 14px;
+
+      margin-top: 1px;
+
+      accent-color: var(--primary);
+
+      flex-shrink: 0;
+    }
+
+
+    .terms-row label {
+      color: var(--muted-2);
+
+      font-size: 8.5px;
+      line-height: 1.55;
+
+      cursor: pointer;
+    }
+
+
+    .terms-row a {
+      color: var(--primary-light);
+
+      text-decoration: none;
+    }
+
+
+    .terms-row a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =====================================================
+       CREATE BUTTON
+       ===================================================== */
+
+    .signup-btn {
+      width: 100%;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          #6d5dfc
+        );
+
+      color: #fff;
+
+      font-family: inherit;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 28px rgba(139, 92, 246, .20);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+
+    .signup-btn:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 14px 32px rgba(139, 92, 246, .27);
+    }
+
+
+    .signup-btn:active {
+      transform: translateY(0);
+    }
+
+
+    .signup-btn.loading {
+      opacity: .65;
+
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       DIVIDER
+       ===================================================== */
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin: 20px 0;
+    }
+
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background: var(--border);
+    }
+
+
+    .auth-divider span {
+      color: var(--muted-2);
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .5px;
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    .login-box {
+      text-align: center;
+    }
+
+
+    .login-box p {
+      margin: 0;
+
+      color: var(--muted-2);
+
+      font-size: 10px;
+    }
+
+
+    .login-box a {
+      color: var(--primary-light);
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+
+    .login-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =====================================================
+       ERROR / SUCCESS
+       ===================================================== */
+
+    .auth-message {
+      display: none;
+
+      margin-bottom: 14px;
+
+      padding: 11px 12px;
+
+      border-radius: 11px;
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+
+    .auth-message.show {
+      display: block;
+    }
+
+
+    .auth-message.error {
+      border: 1px solid rgba(239, 68, 68, .20);
+
+      background: rgba(239, 68, 68, .07);
+
+      color: #fca5a5;
+    }
+
+
+    .auth-message.success {
+      border: 1px solid rgba(34, 197, 94, .20);
+
+      background: rgba(34, 197, 94, .07);
+
+      color: #86efac;
+    }
+
+
+    /* =====================================================
+       BACK HOME
+       ===================================================== */
+
+    .back-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 20px;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+
+      text-decoration: none;
+    }
+
+
+    .back-home:hover {
+      color: var(--text);
+    }
+
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+    @media (min-width: 600px) {
+
+      .auth-page {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .auth-form-card {
+        padding: 25px;
+      }
+
+      .auth-heading h1 {
+        font-size: 28px;
+      }
+
+    }
+
+
+    /* =====================================================
+       DESKTOP
+       ===================================================== */
+
+    @media (min-width: 900px) {
+
+      .auth-page {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="app-shell">
+
+
+    <main class="auth-page">
+
+      <div class="auth-glow"></div>
+
+
+      <div class="auth-card">
+
+
+        <!-- =================================================
+             BRAND
+             ================================================= -->
+
+        <div class="auth-brand">
+
+          <div class="brand-mark">
+            B
+          </div>
+
+          <strong>
+            Brocode
+          </strong>
+
+          <span>
+            Community
+          </span>
+
+        </div>
+
+
+        <!-- =================================================
+             HEADING
+             ================================================= -->
+
+        <div class="auth-heading">
+
+          <h1>
+            Create your account
+          </h1>
+
+          <p>
+            Join the community and start sharing your ideas.
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             FORM CARD
+             ================================================= -->
+
+        <div class="auth-form-card">
+
+
+          <div
+            id="authMessage"
+            class="auth-message"
+          ></div>
+
+
+          <form
+            id="signupForm"
+            autocomplete="on"
+          >
+
+
+            <!-- NAME -->
+
+            <div class="auth-field">
+
+              <label for="signupName">
+                Display Name
+              </label>
+
+              <input
+                id="signupName"
+                class="auth-input"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                autocomplete="name"
+                maxlength="40"
+                required
+              >
+
+            </div>
+
+
+            <!-- USERNAME -->
+
+            <div class="auth-field">
+
+              <label for="signupUsername">
+                Username
+              </label>
+
+              <div class="username-wrap">
+
+                <span class="username-prefix">
+                  @
+                </span>
+
+                <input
+                  id="signupUsername"
+                  class="auth-input username-input"
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  autocomplete="username"
+                  maxlength="20"
+                  required
+                >
+
+              </div>
+
+              <div
+                id="usernameMessage"
+                class="field-message"
+              >
+                3–20 characters · letters, numbers and underscore
+              </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="auth-field">
+
+              <label for="signupPassword">
+                Password
+              </label>
+
+              <div class="input-wrap">
+
+                <input
+                  id="signupPassword"
+                  class="auth-input password-input"
+                  type="password"
+                  name="password"
+                  placeholder="Create a strong password"
+                  autocomplete="new-password"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="passwordToggle"
+                  aria-label="Show password"
+                >
+                  ◉
+                </button>
+
+              </div>
+
+
+              <div class="password-strength">
+
+                <div class="strength-bars">
+
+                  <span class="strength-bar"></span>
+                  <span class="strength-bar"></span>
+                  <span class="strength-bar"></span>
+                  <span class="strength-bar"></span>
+
+                </div>
+
+                <span
+                  id="strengthText"
+                  class="strength-text"
+                >
+                  Weak
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="auth-field">
+
+              <label for="confirmPassword">
+                Confirm Password
+              </label>
+
+              <input
+                id="confirmPassword"
+                class="auth-input"
+                type="password"
+                name="confirmPassword"
+                placeholder="Enter password again"
+                autocomplete="new-password"
+                required
+              >
+
+              <div
+                id="passwordMessage"
+                class="field-message"
+              ></div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="terms-row">
+
+              <input
+                type="checkbox"
+                id="terms"
+                required
+              >
+
+              <label for="terms">
+
+                I agree to the
+                <a href="#" id="termsLink">
+                  Terms
+                </a>
+                and
+                <a href="#" id="privacyLink">
+                  Privacy Policy
+                </a>
+                of Brocode.
+
+              </label>
+
+            </div>
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <button
+              type="submit"
+              id="signupButton"
+              class="signup-btn"
+            >
+              Create Account
+            </button>
+
+
+          </form>
+
+
+          <!-- =================================================
+               LOGIN
+               ================================================= -->
+
+          <div class="auth-divider">
+
+            <span>
+              Already a member?
+            </span>
+
+          </div>
+
+
+          <div class="login-box">
+
+            <p>
+
+              Already have an account?
+
+              <a href="login.html">
+                Login
+              </a>
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <a
+          href="index.html"
+          class="back-home"
+        >
+          ← Back to community
+        </a>
+
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const signupForm =
+      document.getElementById(
+        "signupForm"
+      );
+
+    const signupName =
+      document.getElementById(
+        "signupName"
+      );
+
+    const signupUsername =
+      document.getElementById(
+        "signupUsername"
+      );
+
+    const signupPassword =
+      document.getElementById(
+        "signupPassword"
+      );
+
+    const confirmPassword =
+      document.getElementById(
+        "confirmPassword"
+      );
+
+    const passwordToggle =
+      document.getElementById(
+        "passwordToggle"
+      );
+
+    const usernameMessage =
+      document.getElementById(
+        "usernameMessage"
+      );
+
+    const passwordMessage =
+      document.getElementById(
+        "passwordMessage"
+      );
+
+    const strengthText =
+      document.getElementById(
+        "strengthText"
+      );
+
+    const strengthBars =
+      document.querySelectorAll(
+        ".strength-bar"
+      );
+
+    const authMessage =
+      document.getElementById(
+        "authMessage"
+      );
+
+    const signupButton =
+      document.getElementById(
+        "signupButton"
+      );
+
+
+    /* =====================================================
+       PASSWORD VISIBILITY
+       ===================================================== */
+
+    passwordToggle?.addEventListener(
+      "click",
+      () => {
+
+        const show =
+          signupPassword.type ===
+          "password";
+
+
+        signupPassword.type =
+          show
+            ? "text"
+            : "password";
+
+
+        confirmPassword.type =
+          show
+            ? "text"
+            : "password";
+
+
+        passwordToggle.textContent =
+          show
+            ? "◌"
+            : "◉";
+
+      }
+    );
+
+
+    /* =====================================================
+       USERNAME VALIDATION
+       ===================================================== */
+
+    signupUsername?.addEventListener(
+      "input",
+      () => {
+
+        let value =
+          signupUsername.value
+            .toLowerCase()
+            .replace(/\s/g, "");
+
+
+        signupUsername.value =
+          value;
+
+
+        if (!value) {
+
+          usernameMessage.textContent =
+            "3–20 characters · letters, numbers and underscore";
+
+          usernameMessage.className =
+            "field-message";
+
+          signupUsername.classList.remove(
+            "valid",
+            "invalid"
+          );
+
+          return;
+
+        }
+
+
+        const valid =
+          /^[a-z0-9_]{3,20}$/.test(
+            value
+          );
+
+
+        if (!valid) {
+
+          usernameMessage.textContent =
+            "Username must be 3–20 characters.";
+
+          usernameMessage.className =
+            "field-message error";
+
+          signupUsername.classList.add(
+            "invalid"
+          );
+
+          signupUsername.classList.remove(
+            "valid"
+          );
+
+          return;
+
+        }
+
+
+        usernameMessage.textContent =
+          "Username looks good.";
+
+        usernameMessage.className =
+          "field-message success";
+
+        signupUsername.classList.add(
+          "valid"
+        );
+
+        signupUsername.classList.remove(
+          "invalid"
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       PASSWORD STRENGTH
+       ===================================================== */
+
+    signupPassword?.addEventListener(
+      "input",
+      () => {
+
+        const password =
+          signupPassword.value;
+
+
+        let score = 0;
+
+
+        if (password.length >= 8) {
+          score++;
+        }
+
+
+        if (/[a-z]/.test(password)) {
+          score++;
+        }
+
+
+        if (/[A-Z]/.test(password)) {
+          score++;
+        }
+
+
+        if (
+          /[0-9!@#$%^&*]/.test(
+            password
+          )
+        ) {
+          score++;
+        }
+
+
+        const labels = [
+          "Weak",
+          "Fair",
+          "Good",
+          "Strong"
+        ];
+
+
+        strengthText.textContent =
+          password.length
+            ? labels[
+                Math.max(
+                  0,
+                  score - 1
+                )
+              ]
+            : "Weak";
+
+
+        strengthBars.forEach(
+          (bar, index) => {
+
+            bar.style.opacity =
+              index < score
+                ? "1"
+                : ".35";
+
+          }
+        );
+
+
+        checkPasswords();
+
+      }
+    );
+
+
+    /* =====================================================
+       CONFIRM PASSWORD
+       ===================================================== */
+
+    confirmPassword?.addEventListener(
+      "input",
+      checkPasswords
+    );
+
+
+    function checkPasswords() {
+
+      const password =
+        signupPassword.value;
+
+      const confirm =
+        confirmPassword.value;
+
+
+      if (!confirm) {
+
+        passwordMessage.textContent =
+          "";
+
+        confirmPassword.classList.remove(
+          "valid",
+          "invalid"
+        );
+
+        return false;
+
+      }
+
+
+      if (password !== confirm) {
+
+        passwordMessage.textContent =
+          "Passwords do not match.";
+
+        passwordMessage.className =
+          "field-message error";
+
+        confirmPassword.classList.add(
+          "invalid"
+        );
+
+        confirmPassword.classList.remove(
+          "valid"
+        );
+
+        return false;
+
+      }
+
+
+      passwordMessage.textContent =
+        "Passwords match.";
+
+      passwordMessage.className =
+        "field-message success";
+
+      confirmPassword.classList.add(
+        "valid"
+      );
+
+      confirmPassword.classList.remove(
+        "invalid"
+      );
+
+      return true;
+
+    }
+
+
+    /* =====================================================
+       MESSAGE
+       ===================================================== */
+
+    function showMessage(
+      message,
+      type
+    ) {
+
+      authMessage.textContent =
+        message;
+
+      authMessage.className =
+        `auth-message ${type} show`;
+
+    }
+
+
+    /* =====================================================
+       FORM SUBMIT
+       ===================================================== */
+
+    signupForm?.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+
+        const name =
+          signupName.value.trim();
+
+
+        const username =
+          signupUsername.value.trim()
+            .toLowerCase();
+
+
+        const password =
+          signupPassword.value;
+
+
+        const confirm =
+          confirmPassword.value;
+
+
+        /*
+         * Basic validation
+         */
+
+        if (name.length < 2) {
+
+          showMessage(
+            "Please enter a valid display name.",
+            "error"
+          );
+
+          signupName.focus();
+
+          return;
+
+        }
+
+
+        if (
+          !/^[a-z0-9_]{3,20}$/.test(
+            username
+          )
+        ) {
+
+          showMessage(
+            "Please choose a valid username.",
+            "error"
+          );
+
+          signupUsername.focus();
+
+          return;
+
+        }
+
+
+        if (password.length < 8) {
+
+          showMessage(
+            "Password must contain at least 8 characters.",
+            "error"
+          );
+
+          signupPassword.focus();
+
+          return;
+
+        }
+
+
+        if (password !== confirm) {
+
+          showMessage(
+            "Passwords do not match.",
+            "error"
+          );
+
+          confirmPassword.focus();
+
+          return;
+
+        }
+
+
+        /*
+         * Demo only.
+         *
+         * IMPORTANT:
+         * Password is NOT stored.
+         */
+
+        signupButton.classList.add(
+          "loading"
+        );
+
+        signupButton.textContent =
+          "Creating account...";
+
+
+        setTimeout(
+          () => {
+
+            /*
+             * Only non-sensitive demo
+             * profile information is saved.
+             */
+
+            localStorage.setItem(
+              "community_user",
+              JSON.stringify({
+                name: name,
+                username: "@" + username
+              })
+            );
+
+
+            signupButton.classList.remove(
+              "loading"
+            );
+
+            signupButton.textContent =
+              "Create Account";
+
+
+            showMessage(
+              "Account created successfully. Welcome to Brocode!",
+              "success"
+            );
+
+
+            setTimeout(
+              () => {
+
+                window.location.href =
+                  "index.html";
+
+              },
+              900
+            );
+
+          },
+          600
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       TERMS / PRIVACY PLACEHOLDER
+       ===================================================== */
+
+    document
+      .getElementById("termsLink")
+      ?.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+          window.BrocodeApp?.showToast(
+            "Terms page will be added later."
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById("privacyLink")
+      ?.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+          window.BrocodeApp?.showToast(
+            "Privacy page will be added later."
+          );
+
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
