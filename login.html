@@ -1,1 +1,1035 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>login — Community</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/responsive.css"></head><body><main class="auth-page"><div class="auth-card"><div class="brand large">Community</div><h1>Login</h1><p class="muted">Page ready for implementation.</p><a class="primary-btn" href="index.html">Back to Home</a></div></main><script src="js/app.js"></script><script src="js/auth.js"></script><script src="js/posts.js"></script><script src="js/profile.js"></script><script src="js/explore.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0b0d14"
+  >
+
+  <title>Login — Brocode</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/components.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/responsive.css"
+  >
+
+  <style>
+
+    /* =====================================================
+       AUTH PAGE
+       ===================================================== */
+
+    .auth-page {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 16px 110px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .auth-glow {
+      position: absolute;
+
+      width: 360px;
+      height: 360px;
+
+      top: -150px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(139, 92, 246, .16),
+          transparent 68%
+        );
+
+      pointer-events: none;
+    }
+
+
+    .auth-card {
+      width: 100%;
+      max-width: 410px;
+
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* BRAND */
+
+    .auth-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin-bottom: 30px;
+    }
+
+
+    .auth-brand .brand-mark {
+      width: 54px;
+      height: 54px;
+
+      margin-bottom: 13px;
+
+      border-radius: 17px;
+
+      font-size: 21px;
+
+      box-shadow:
+        0 12px 35px rgba(139, 92, 246, .20);
+    }
+
+
+    .auth-brand strong {
+      color: var(--text);
+
+      font-size: 20px;
+      font-weight: 800;
+
+      letter-spacing: -.4px;
+    }
+
+
+    .auth-brand span {
+      margin-top: 4px;
+
+      color: var(--muted-2);
+
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+
+    /* HEADING */
+
+    .auth-heading {
+      text-align: center;
+
+      margin-bottom: 24px;
+    }
+
+
+    .auth-heading h1 {
+      margin: 0 0 8px;
+
+      color: var(--text);
+
+      font-size: 25px;
+      font-weight: 800;
+
+      letter-spacing: -.6px;
+    }
+
+
+    .auth-heading p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+
+    /* FORM CARD */
+
+    .auth-form-card {
+      padding: 22px;
+
+      border: 1px solid var(--border);
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 24, 35, .98),
+          rgba(13, 16, 24, .98)
+        );
+
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, .22);
+    }
+
+
+    /* FIELD */
+
+    .auth-field {
+      margin-bottom: 17px;
+    }
+
+
+    .auth-field label {
+      display: block;
+
+      margin: 0 0 7px 2px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+
+    .input-wrap {
+      position: relative;
+    }
+
+
+    .auth-input {
+      width: 100%;
+      height: 48px;
+
+      padding: 0 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      outline: none;
+
+      background: var(--surface);
+
+      color: var(--text);
+
+      font-family: inherit;
+      font-size: 12px;
+
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+
+    .auth-input::placeholder {
+      color: var(--muted-2);
+    }
+
+
+    .auth-input:focus {
+      border-color: rgba(139, 92, 246, .58);
+
+      background: var(--surface-2);
+
+      box-shadow:
+        0 0 0 4px rgba(139, 92, 246, .08);
+    }
+
+
+    .password-input {
+      padding-right: 50px;
+    }
+
+
+    .password-toggle {
+      position: absolute;
+
+      top: 50%;
+      right: 9px;
+
+      transform: translateY(-50%);
+
+      width: 34px;
+      height: 34px;
+
+      display: grid;
+      place-items: center;
+
+      border: 0;
+      border-radius: 9px;
+
+      background: transparent;
+
+      color: var(--muted-2);
+
+      cursor: pointer;
+
+      font-size: 14px;
+    }
+
+
+    .password-toggle:hover {
+      background: var(--surface-3);
+      color: var(--text);
+    }
+
+
+    /* OPTIONS */
+
+    .auth-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin: 3px 1px 20px;
+    }
+
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+
+      cursor: pointer;
+    }
+
+
+    .remember input {
+      width: 13px;
+      height: 13px;
+
+      accent-color: var(--primary);
+    }
+
+
+    .forgot-link {
+      color: var(--primary-light);
+
+      font-size: 9px;
+      font-weight: 600;
+
+      text-decoration: none;
+    }
+
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+
+    /* LOGIN BUTTON */
+
+    .login-btn {
+      width: 100%;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          #6d5dfc
+        );
+
+      color: #fff;
+
+      font-family: inherit;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 28px rgba(139, 92, 246, .20);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
+    }
+
+
+    .login-btn:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 14px 32px rgba(139, 92, 246, .27);
+    }
+
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+
+    .login-btn.loading {
+      opacity: .65;
+      pointer-events: none;
+    }
+
+
+    /* DIVIDER */
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin: 21px 0;
+    }
+
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background: var(--border);
+    }
+
+
+    .auth-divider span {
+      color: var(--muted-2);
+
+      font-size: 8px;
+      font-weight: 500;
+
+      text-transform: uppercase;
+
+      letter-spacing: .5px;
+    }
+
+
+    /* SIGNUP */
+
+    .signup-box {
+      text-align: center;
+
+      padding-top: 3px;
+    }
+
+
+    .signup-box p {
+      margin: 0;
+
+      color: var(--muted-2);
+
+      font-size: 10px;
+    }
+
+
+    .signup-box a {
+      color: var(--primary-light);
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+
+    .signup-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* BACK HOME */
+
+    .back-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 21px;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+
+      text-decoration: none;
+    }
+
+
+    .back-home:hover {
+      color: var(--text);
+    }
+
+
+    /* ERROR */
+
+    .auth-error {
+      display: none;
+
+      margin-bottom: 15px;
+      padding: 11px 12px;
+
+      border: 1px solid rgba(239, 68, 68, .20);
+      border-radius: 11px;
+
+      background: rgba(239, 68, 68, .07);
+
+      color: #fca5a5;
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+
+    .auth-error.show {
+      display: block;
+    }
+
+
+    /* SUCCESS */
+
+    .auth-success {
+      display: none;
+
+      margin-bottom: 15px;
+      padding: 11px 12px;
+
+      border: 1px solid rgba(34, 197, 94, .20);
+      border-radius: 11px;
+
+      background: rgba(34, 197, 94, .07);
+
+      color: #86efac;
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+
+    .auth-success.show {
+      display: block;
+    }
+
+
+    /* TABLET */
+
+    @media (min-width: 600px) {
+
+      .auth-page {
+        padding-top: 40px;
+      }
+
+      .auth-form-card {
+        padding: 25px;
+      }
+
+      .auth-heading h1 {
+        font-size: 28px;
+      }
+
+    }
+
+
+    /* DESKTOP */
+
+    @media (min-width: 900px) {
+
+      .auth-page {
+        padding-bottom: 40px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="app-shell">
+
+
+    <main class="auth-page">
+
+      <div class="auth-glow"></div>
+
+
+      <div class="auth-card">
+
+
+        <!-- BRAND -->
+
+        <div class="auth-brand">
+
+          <div class="brand-mark">
+            B
+          </div>
+
+          <strong>
+            Brocode
+          </strong>
+
+          <span>
+            Community
+          </span>
+
+        </div>
+
+
+        <!-- HEADING -->
+
+        <div class="auth-heading">
+
+          <h1>
+            Welcome back
+          </h1>
+
+          <p>
+            Login to continue to your Brocode community.
+          </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div class="auth-form-card">
+
+
+          <div
+            id="authError"
+            class="auth-error"
+          ></div>
+
+
+          <div
+            id="authSuccess"
+            class="auth-success"
+          ></div>
+
+
+          <form
+            id="loginForm"
+            autocomplete="on"
+          >
+
+
+            <!-- USERNAME -->
+
+            <div class="auth-field">
+
+              <label for="loginUsername">
+                Username
+              </label>
+
+              <div class="input-wrap">
+
+                <input
+                  id="loginUsername"
+                  class="auth-input"
+                  type="text"
+                  name="username"
+                  placeholder="@username"
+                  autocomplete="username"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="auth-field">
+
+              <label for="loginPassword">
+                Password
+              </label>
+
+              <div class="input-wrap">
+
+                <input
+                  id="loginPassword"
+                  class="auth-input password-input"
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                >
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="passwordToggle"
+                  aria-label="Show password"
+                >
+                  ◉
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="auth-options">
+
+              <label class="remember">
+
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                >
+
+                <span>
+                  Remember me
+                </span>
+
+              </label>
+
+
+              <a
+                href="#"
+                class="forgot-link"
+                id="forgotPassword"
+              >
+                Forgot password?
+              </a>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+              type="submit"
+              class="login-btn"
+              id="loginButton"
+            >
+              Login
+            </button>
+
+
+          </form>
+
+
+          <!-- DIVIDER -->
+
+          <div class="auth-divider">
+
+            <span>
+              New to Brocode?
+            </span>
+
+          </div>
+
+
+          <!-- SIGN UP -->
+
+          <div class="signup-box">
+
+            <p>
+
+              Don't have an account?
+
+              <a href="signup.html">
+                Create account
+              </a>
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- HOME -->
+
+        <a
+          href="index.html"
+          class="back-home"
+        >
+          ← Back to community
+        </a>
+
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       PASSWORD VISIBILITY
+       ===================================================== */
+
+    const passwordInput =
+      document.getElementById(
+        "loginPassword"
+      );
+
+    const passwordToggle =
+      document.getElementById(
+        "passwordToggle"
+      );
+
+
+    passwordToggle?.addEventListener(
+      "click",
+      () => {
+
+        const isPassword =
+          passwordInput.type === "password";
+
+
+        passwordInput.type =
+          isPassword
+            ? "text"
+            : "password";
+
+
+        passwordToggle.textContent =
+          isPassword
+            ? "◌"
+            : "◉";
+
+      }
+    );
+
+
+    /* =====================================================
+       FORGOT PASSWORD — DEMO
+       ===================================================== */
+
+    document
+      .getElementById("forgotPassword")
+      ?.addEventListener(
+        "click",
+        event => {
+
+          event.preventDefault();
+
+
+          if (window.BrocodeApp?.showToast) {
+
+            window.BrocodeApp.showToast(
+              "Password recovery will be available after backend setup."
+            );
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       LOGIN FORM
+       ===================================================== */
+
+    document
+      .getElementById("loginForm")
+      ?.addEventListener(
+        "submit",
+        event => {
+
+          event.preventDefault();
+
+
+          const username =
+            document
+              .getElementById("loginUsername")
+              .value
+              .trim();
+
+
+          const password =
+            document
+              .getElementById("loginPassword")
+              .value;
+
+
+          const errorBox =
+            document.getElementById(
+              "authError"
+            );
+
+
+          const successBox =
+            document.getElementById(
+              "authSuccess"
+            );
+
+
+          const loginButton =
+            document.getElementById(
+              "loginButton"
+            );
+
+
+          errorBox.classList.remove(
+            "show"
+          );
+
+
+          successBox.classList.remove(
+            "show"
+          );
+
+
+          /*
+           * Frontend validation only.
+           * Real authentication will be
+           * handled by backend later.
+           */
+
+          if (!username) {
+
+            errorBox.textContent =
+              "Please enter your username.";
+
+            errorBox.classList.add(
+              "show"
+            );
+
+            return;
+
+          }
+
+
+          if (password.length < 1) {
+
+            errorBox.textContent =
+              "Please enter your password.";
+
+            errorBox.classList.add(
+              "show"
+            );
+
+            return;
+
+          }
+
+
+          loginButton.classList.add(
+            "loading"
+          );
+
+
+          loginButton.textContent =
+            "Checking...";
+
+
+          setTimeout(
+            () => {
+
+              loginButton.classList.remove(
+                "loading"
+              );
+
+
+              loginButton.textContent =
+                "Login";
+
+
+              /*
+               * Demo login.
+               *
+               * IMPORTANT:
+               * No password is stored.
+               */
+
+              localStorage.setItem(
+                "community_user",
+                JSON.stringify({
+                  username:
+                    username.startsWith("@")
+                      ? username
+                      : "@" + username
+                })
+              );
+
+
+              successBox.textContent =
+                "Demo login successful. Redirecting...";
+
+
+              successBox.classList.add(
+                "show"
+              );
+
+
+              setTimeout(
+                () => {
+
+                  window.location.href =
+                    "index.html";
+
+                },
+                650
+              );
+
+            },
+            500
+          );
+
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
