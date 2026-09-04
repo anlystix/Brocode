@@ -4,85 +4,61 @@
 
 :root {
   /* ===============================
-     PREMIUM BACKGROUND
+     BROCODE — EMERALD & CHAMPAGNE
      =============================== */
 
-  --bg: #211714;
-  --bg-soft: #2A1D19;
+  --bg: #071A15;
+  --bg-soft: #0A241C;
 
-  /* ===============================
-     PREMIUM SURFACES
-     =============================== */
+  --surface: #0D3025;
+  --surface-2: #10402F;
+  --surface-3: #14513C;
 
-  --surface: #30221D;
-  --surface-2: #382822;
-  --surface-3: #432F28;
+  /* Borders */
+  --border: rgba(248, 231, 201, 0.10);
+  --border-strong: rgba(248, 231, 201, 0.18);
 
-  /* ===============================
-     BORDERS
-     =============================== */
+  /* Text */
+  --text: #FFFDF8;
+  --text-soft: #F8E7C9;
+  --text-muted: #B8C8C0;
 
-  --border: rgba(236, 216, 198, 0.10);
-  --border-strong: rgba(236, 216, 198, 0.18);
+  /* Champagne */
+  --primary: #F8E7C9;
+  --primary-light: #FFF3DC;
+  --primary-dark: #DDBF91;
 
-  /* ===============================
-     TEXT
-     =============================== */
+  /* Emerald */
+  --emerald: #064E3B;
+  --emerald-light: #087054;
+  --emerald-dark: #032F24;
 
-  --text: #FFFDFC;
-  --text-soft: #E9DCD2;
-  --text-muted: #B9A79B;
-
-  /* ===============================
-     BEIGE / CHAMPAGNE ACCENT
-     =============================== */
-
-  --primary: #D6B08A;
-  --primary-light: #F0D5B8;
-  --primary-dark: #A87E5A;
-
-  /* ===============================
-     STATUS
-     =============================== */
-
-  --success: #52D6A2;
+  /* Status */
+  --success: #55D6A5;
   --danger: #FF7188;
 
-  /* ===============================
-     RADIUS
-     =============================== */
-
+  /* Radius */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 22px;
   --radius-xl: 28px;
 
-  /* ===============================
-     PREMIUM SHADOWS
-     =============================== */
-
+  /* Shadows */
   --shadow-sm: 0 8px 25px rgba(0, 0, 0, 0.20);
   --shadow-md: 0 18px 45px rgba(0, 0, 0, 0.30);
   --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.42);
 
-  /* ===============================
-     LAYOUT
-     =============================== */
-
+  /* Layout */
   --container: 760px;
 
   --nav-height: 76px;
   --topbar-height: 68px;
 
-  /* ===============================
-     MOTION
-     =============================== */
-
+  /* Motion */
   --transition-fast: 160ms ease;
   --transition: 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-smooth: 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 
 /* =========================================================
    RESET
