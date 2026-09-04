@@ -942,3 +942,234 @@
   }
 
 }
+/* =========================================================
+   BROCODE — POST MENU / ACTION BAR UPDATE
+   ========================================================= */
+
+/* Remove the opened "Remove saved / Report" dropdown */
+.post-card .dropdown {
+  display: none !important;
+}
+
+
+/* =========================================================
+   POST FOOTER
+   ========================================================= */
+
+.post-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+/* =========================================================
+   LIKE / COMMENT / SHARE
+   ========================================================= */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* Normal readable action buttons */
+.post-action {
+  min-height: 36px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 10px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  color: var(--text-muted);
+  background: transparent;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+
+/* Hover */
+.post-action:hover {
+  color: var(--text-soft);
+
+  background:
+    rgba(6, 78, 59, 0.055);
+
+  border-color:
+    var(--border);
+}
+
+
+/* Click */
+.post-action:active {
+  transform: scale(0.94);
+}
+
+
+/* =========================================================
+   ACTION ICONS — BIGGER / NORMAL SIZE
+   ========================================================= */
+
+.post-action .action-icon {
+  width: 19px;
+  height: 19px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  line-height: 1;
+
+  flex-shrink: 0;
+}
+
+
+/* Number beside icon */
+.post-action .action-count {
+  min-width: 8px;
+
+  font-size: 10px;
+  font-weight: 650;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   LIKE
+   ========================================================= */
+
+.post-action.liked {
+  color: #d94b63;
+
+  background:
+    rgba(217, 75, 99, 0.07);
+
+  border-color:
+    rgba(217, 75, 99, 0.12);
+}
+
+
+/* =========================================================
+   SAVED — RIGHT SIDE
+   ========================================================= */
+
+.post-action.saved {
+  margin-left: auto;
+
+  min-height: 36px;
+
+  color: var(--primary);
+
+  background:
+    rgba(248, 231, 201, 0.55);
+
+  border-color:
+    rgba(6, 78, 59, 0.12);
+}
+
+
+.post-action.saved:hover {
+  color: var(--primary-dark);
+
+  background:
+    rgba(248, 231, 201, 0.75);
+
+  border-color:
+    rgba(6, 78, 59, 0.18);
+}
+
+
+/* Saved icon */
+.post-action.saved .action-icon {
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   REMOVE OLD PURPLE ACTION COLORS
+   ========================================================= */
+
+.post-action.saved {
+  color: var(--primary);
+}
+
+.post-action.saved .action-icon {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .post-actions {
+    gap: 4px;
+  }
+
+  .post-action {
+    min-height: 35px;
+
+    padding: 0 8px;
+
+    gap: 6px;
+
+    font-size: 10px;
+  }
+
+  .post-action .action-icon {
+    width: 18px;
+    height: 18px;
+
+    font-size: 17px;
+  }
+
+  .post-action .action-count {
+    font-size: 9px;
+  }
+
+  .post-action.saved {
+    margin-left: auto;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .post-action {
+    padding: 0 6px;
+    gap: 5px;
+  }
+
+  .post-action .action-icon {
+    width: 17px;
+    height: 17px;
+
+    font-size: 16px;
+  }
+
+}
