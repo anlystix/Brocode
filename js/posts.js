@@ -214,19 +214,18 @@ function renderFeed() {
 
   if (!posts.length) {
 
-    feed.innerHTML = createEmptyState();
+    feed.innerHTML =
+      createEmptyState();
 
     return;
 
   }
 
 
-  feed.innerHTML = posts
-    .map(post => createPostCard(post))
-    .join("");
-
-
-  bindPostMenus();
+  feed.innerHTML =
+    posts
+      .map(post => createPostCard(post))
+      .join("");
 
 }
 
@@ -280,7 +279,10 @@ function createPostCard(post) {
       data-post-id="${post.id}"
     >
 
-      <!-- POST HEADER -->
+
+      <!-- ===============================================
+           POST HEADER
+           =============================================== -->
 
       <div class="post-header">
 
@@ -292,10 +294,13 @@ function createPostCard(post) {
 
           <div class="author-info">
 
-            <strong>${safeUser}</strong>
+            <strong>
+              ${safeUser}
+            </strong>
 
             <span>
               ${safeHandle}
+
               <span class="post-time">
                 · ${post.time}
               </span>
@@ -305,54 +310,21 @@ function createPostCard(post) {
 
         </div>
 
-
-        <div class="post-menu-wrap">
-
-          <button
-            type="button"
-            class="post-menu"
-            data-menu-button="${post.id}"
-            aria-label="Post options"
-          >
-            ⋯
-          </button>
-
-          <div
-            class="post-dropdown"
-            data-dropdown="${post.id}"
-          >
-
-            <button
-              type="button"
-              data-menu-action="save"
-              data-post-id="${post.id}"
-            >
-              ${saved ? "Remove saved" : "Save post"}
-            </button>
-
-            <button
-              type="button"
-              data-menu-action="report"
-              data-post-id="${post.id}"
-            >
-              Report
-            </button>
-
-          </div>
-
-        </div>
-
       </div>
 
 
-      <!-- CATEGORY -->
+      <!-- ===============================================
+           CATEGORY
+           =============================================== -->
 
       <div class="post-category">
         ${post.category}
       </div>
 
 
-      <!-- POST CONTENT -->
+      <!-- ===============================================
+           POST CONTENT
+           =============================================== -->
 
       <div class="post-content">
 
@@ -367,11 +339,16 @@ function createPostCard(post) {
       </div>
 
 
-      <!-- POST FOOTER -->
+      <!-- ===============================================
+           POST FOOTER
+           =============================================== -->
 
       <div class="post-footer">
 
         <div class="post-actions">
+
+
+          <!-- LIKE -->
 
           <button
             type="button"
@@ -395,9 +372,11 @@ function createPostCard(post) {
           </button>
 
 
+          <!-- COMMENT -->
+
           <button
             type="button"
-            class="post-action"
+            class="post-action comment-action"
             data-action="comment"
             data-post-id="${post.id}"
             aria-label="Comments"
@@ -413,6 +392,31 @@ function createPostCard(post) {
 
           </button>
 
+
+          <!-- SHARE -->
+
+          <button
+            type="button"
+            class="post-action share-action"
+            data-action="share"
+            data-post-id="${post.id}"
+            aria-label="Share post"
+          >
+
+            <span class="action-icon">
+              ↗
+            </span>
+
+            <span>
+              Share
+            </span>
+
+          </button>
+
+
+          <!-- SAVED
+               Right side par rahega
+          -->
 
           <button
             type="button"
@@ -432,24 +436,6 @@ function createPostCard(post) {
 
           </button>
 
-
-          <button
-            type="button"
-            class="post-action share-action"
-            data-action="share"
-            data-post-id="${post.id}"
-            aria-label="Share post"
-          >
-
-            <span class="action-icon">
-              ↗
-            </span>
-
-            <span>
-              Share
-            </span>
-
-          </button>
 
         </div>
 
@@ -573,143 +559,7 @@ function createEmptyState() {
 
 
 /* =========================================================
-   POST MENU
-   ========================================================= */
-
-function bindPostMenus() {
-
-  /*
-   * Open / close dropdown
-   */
-
-  document
-    .querySelectorAll("[data-menu-button]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        event => {
-
-          event.stopPropagation();
-
-
-          const postId =
-            button.dataset.menuButton;
-
-
-          const dropdown =
-            document.querySelector(
-              `[data-dropdown="${postId}"]`
-            );
-
-
-          document
-            .querySelectorAll(".post-dropdown")
-            .forEach(item => {
-
-              if (item !== dropdown) {
-                item.classList.remove("show");
-              }
-
-            });
-
-
-          dropdown?.classList.toggle(
-            "show"
-          );
-
-        }
-      );
-
-    });
-
-
-  /*
-   * Menu actions
-   */
-
-  document
-    .querySelectorAll("[data-menu-action]")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        event => {
-
-          event.stopPropagation();
-
-
-          const action =
-            button.dataset.menuAction;
-
-
-          const postId =
-            button.dataset.postId;
-
-
-          if (
-            action === "save" &&
-            window.BrocodeApp
-          ) {
-
-            window.BrocodeApp
-              .toggleSavePost(postId);
-
-            renderFeed();
-
-          }
-
-
-          if (action === "report") {
-
-            window.BrocodeApp?.showToast(
-              "Post reported for review"
-            );
-
-          }
-
-        }
-      );
-
-    });
-
-
-  /*
-   * Close menus when clicking outside
-   */
-
-  document.addEventListener(
-    "click",
-    closePostMenus,
-    {
-      once: true
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CLOSE POST MENUS
-   ========================================================= */
-
-function closePostMenus() {
-
-  document
-    .querySelectorAll(".post-dropdown")
-    .forEach(dropdown => {
-
-      dropdown.classList.remove(
-        "show"
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   ACTION OVERRIDE
+   ACTION HANDLER
    ========================================================= */
 
 document.addEventListener(
@@ -736,9 +586,9 @@ document.addEventListener(
     if (!postId) return;
 
 
-    /*
-     * LIKE
-     */
+    /* =====================================================
+       LIKE
+       ===================================================== */
 
     if (action === "like") {
 
@@ -746,10 +596,6 @@ document.addEventListener(
         window.BrocodeApp
           ?.isPostLiked?.(postId);
 
-
-      /*
-       * Update icon immediately
-       */
 
       const icon =
         button.querySelector(
@@ -783,7 +629,10 @@ document.addEventListener(
 
 
         if (icon) {
-          icon.textContent = "♡";
+
+          icon.textContent =
+            "♡";
+
         }
 
       } else {
@@ -796,7 +645,10 @@ document.addEventListener(
 
 
         if (icon) {
-          icon.textContent = "♥";
+
+          icon.textContent =
+            "♥";
+
         }
 
       }
@@ -805,18 +657,49 @@ document.addEventListener(
       if (count) {
 
         count.textContent =
-          formatNumber(post.likes);
+          formatNumber(
+            post.likes
+          );
 
       }
+
+
+      /*
+       * Persist like state
+       */
+
+      window.BrocodeApp
+        ?.toggleLikePost?.(
+          postId
+        );
 
     }
 
 
-    /*
-     * SAVE
-     */
+    /* =====================================================
+       SAVE
+       ===================================================== */
 
     if (action === "save") {
+
+      const currentlySaved =
+        window.BrocodeApp
+          ?.isPostSaved?.(postId);
+
+
+      /*
+       * Toggle storage state
+       */
+
+      window.BrocodeApp
+        ?.toggleSavePost?.(
+          postId
+        );
+
+
+      /*
+       * Get updated state
+       */
 
       const saved =
         window.BrocodeApp
@@ -843,12 +726,18 @@ document.addEventListener(
 
 
         if (icon) {
-          icon.textContent = "★";
+
+          icon.textContent =
+            "★";
+
         }
 
 
         if (label) {
-          label.textContent = "Saved";
+
+          label.textContent =
+            "Saved";
+
         }
 
       } else {
@@ -859,28 +748,142 @@ document.addEventListener(
 
 
         if (icon) {
-          icon.textContent = "☆";
+
+          icon.textContent =
+            "☆";
+
         }
 
 
         if (label) {
-          label.textContent = "Save";
+
+          label.textContent =
+            "Save";
+
         }
+
+      }
+
+
+      /*
+       * Refresh only when required.
+       * This keeps the button responsive.
+       */
+
+      if (
+        currentlySaved !== saved
+      ) {
+
+        window.dispatchEvent(
+          new CustomEvent(
+            "savedchange",
+            {
+              detail: {
+                postId,
+                saved
+              }
+            }
+          )
+        );
 
       }
 
     }
 
 
-    /*
-     * COMMENTS
-     */
+    /* =====================================================
+       COMMENTS
+       ===================================================== */
 
     if (action === "comment") {
 
       window.BrocodeApp?.showToast(
         "Comments will open here"
       );
+
+    }
+
+
+    /* =====================================================
+       SHARE
+       ===================================================== */
+
+    if (action === "share") {
+
+      const post =
+        DEMO_POSTS.find(
+          item =>
+            item.id === postId
+        );
+
+
+      if (!post) return;
+
+
+      const shareText =
+        `${post.title} — Brocode`;
+
+
+      /*
+       * Native share
+       */
+
+      if (
+        navigator.share
+      ) {
+
+        navigator.share({
+          title: post.title,
+          text: shareText,
+          url: window.location.href
+        })
+        .catch(() => {});
+
+
+        return;
+
+      }
+
+
+      /*
+       * Clipboard fallback
+       */
+
+      if (
+        navigator.clipboard
+      ) {
+
+        navigator.clipboard
+          .writeText(
+            window.location.href
+          )
+          .then(() => {
+
+            window.BrocodeApp
+              ?.showToast?.(
+                "Post link copied"
+              );
+
+          })
+          .catch(() => {
+
+            window.BrocodeApp
+              ?.showToast?.(
+                "Unable to copy link"
+              );
+
+          });
+
+
+        return;
+
+      }
+
+
+      window.BrocodeApp
+        ?.showToast?.(
+          "Share link ready"
+        );
 
     }
 
@@ -895,15 +898,25 @@ document.addEventListener(
 window.BrocodePosts = {
 
   getAll() {
-    return [...DEMO_POSTS];
+
+    return [
+      ...DEMO_POSTS
+    ];
+
   },
+
 
   getVisible() {
+
     return getVisiblePosts();
+
   },
 
+
   render() {
+
     renderFeed();
+
   }
 
 };
