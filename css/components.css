@@ -1622,75 +1622,76 @@
   }
 
 }
-/* =========================================================
-   BROCODE — BOTTOM NAV FINAL DESIGN
+/*/* =========================================================
+   BROCODE — PREMIUM FLOATING BOTTOM NAV
+   FINAL OVERRIDE
    ========================================================= */
 
-/* Main bar */
 body .bottom-nav {
   position: fixed !important;
+
   left: 50% !important;
   right: auto !important;
-  bottom: 18px !important;
+  bottom: 20px !important;
+
+  width: min(560px, calc(100vw - 32px)) !important;
+  height: 76px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   transform: translateX(-50%) !important;
 
-  width: 520px !important;
-  max-width: calc(100vw - 32px) !important;
+  background: #101816 !important;
 
-  height: 74px !important;
-
-  padding: 0 !important;
-  margin: 0 !important;
-
-  background: #111917 !important;
-
-  border: 1px solid rgba(255,255,255,.18) !important;
-  border-radius: 25px !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  border-radius: 26px !important;
 
   box-shadow:
-    0 18px 45px rgba(0,0,0,.20),
-    0 5px 18px rgba(0,0,0,.12),
+    0 18px 45px rgba(0,0,0,.24),
+    0 5px 16px rgba(0,0,0,.16),
     inset 0 1px 0 rgba(255,255,255,.08) !important;
 
   z-index: 99999 !important;
 
   overflow: visible !important;
+
+  box-sizing: border-box !important;
 }
 
 
-/* Inner area */
+/* =========================================================
+   INNER
+   ========================================================= */
+
 body .bottom-nav .bottom-nav-inner {
   position: relative !important;
 
   width: 100% !important;
-  height: 100% !important;
+  height: 76px !important;
 
   display: grid !important;
-
-  grid-template-columns:
-    repeat(4, 1fr) !important;
+  grid-template-columns: repeat(4, 1fr) !important;
 
   align-items: center !important;
   justify-items: center !important;
 
-  padding: 0 !important;
   margin: 0 !important;
+  padding: 0 !important;
 
   overflow: visible !important;
 }
 
 
 /* =========================================================
-   EACH BUTTON
+   NAV ITEM
    ========================================================= */
 
 body .bottom-nav .nav-item {
-
   position: relative !important;
 
   width: 100% !important;
-  height: 74px !important;
+  height: 76px !important;
 
   display: flex !important;
   flex-direction: column !important;
@@ -1700,26 +1701,27 @@ body .bottom-nav .nav-item {
 
   gap: 6px !important;
 
-  padding: 0 !important;
   margin: 0 !important;
+  padding: 0 !important;
 
   background: transparent !important;
   border: 0 !important;
 
-  color: rgba(255,255,255,.58) !important;
+  color: rgba(255,255,255,.52) !important;
 
   text-decoration: none !important;
 
-  font-size: 11px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 10px !important;
   font-weight: 600 !important;
-
-  overflow: visible !important;
 
   box-sizing: border-box !important;
 
+  overflow: visible !important;
+
   transition:
-    color .25s ease,
-    transform .25s ease !important;
+    transform .25s ease,
+    color .25s ease !important;
 }
 
 
@@ -1728,26 +1730,24 @@ body .bottom-nav .nav-item {
    ========================================================= */
 
 body .bottom-nav .nav-item .nav-icon {
-
   position: relative !important;
 
   width: 28px !important;
   height: 28px !important;
 
   display: flex !important;
-
   align-items: center !important;
   justify-content: center !important;
 
-  padding: 0 !important;
   margin: 0 !important;
+  padding: 0 !important;
 
-  color: rgba(255,255,255,.70) !important;
+  color: rgba(255,255,255,.72) !important;
 
   font-size: 22px !important;
   line-height: 1 !important;
 
-  z-index: 2 !important;
+  z-index: 5 !important;
 
   box-sizing: border-box !important;
 }
@@ -1758,10 +1758,9 @@ body .bottom-nav .nav-item .nav-icon {
    ========================================================= */
 
 body .bottom-nav .nav-item .nav-label {
+  position: relative !important;
 
   display: block !important;
-
-  position: static !important;
 
   width: auto !important;
   height: auto !important;
@@ -1769,17 +1768,18 @@ body .bottom-nav .nav-item .nav-label {
   margin: 0 !important;
   padding: 0 !important;
 
-  color: rgba(255,255,255,.58) !important;
+  color: rgba(255,255,255,.55) !important;
 
   font-size: 10px !important;
-  line-height: 1 !important;
-
   font-weight: 600 !important;
+  line-height: 1 !important;
 
   opacity: 1 !important;
   visibility: visible !important;
 
   transform: none !important;
+
+  z-index: 5 !important;
 
   white-space: nowrap !important;
 }
@@ -1790,30 +1790,28 @@ body .bottom-nav .nav-item .nav-label {
    ========================================================= */
 
 body .bottom-nav .nav-item.active {
+  color: #f3c56b !important;
 
-  color: #f4c66f !important;
+  transform: translateY(-15px) !important;
 
-  transform: translateY(-14px) !important;
-
-  z-index: 10 !important;
+  z-index: 20 !important;
 }
 
 
 /* =========================================================
-   ACTIVE GOLDEN CIRCLE
+   ACTIVE GOLD CIRCLE
    ========================================================= */
 
 body .bottom-nav .nav-item.active::before {
-
   content: "" !important;
 
   position: absolute !important;
 
+  width: 64px !important;
+  height: 64px !important;
+
   left: 50% !important;
   top: 50% !important;
-
-  width: 62px !important;
-  height: 62px !important;
 
   transform: translate(-50%, -50%) !important;
 
@@ -1822,20 +1820,22 @@ body .bottom-nav .nav-item.active::before {
   background:
     radial-gradient(
       circle at 35% 28%,
-      #fff2c9 0%,
-      #f8d27f 35%,
-      #edb84f 68%,
-      #d99627 100%
+      #fff4d2 0%,
+      #ffd982 30%,
+      #f3bd55 65%,
+      #d99529 100%
     ) !important;
 
-  border: 2px solid rgba(255,240,194,.9) !important;
+  border: 2px solid rgba(255,240,194,.90) !important;
 
   box-shadow:
-    0 4px 8px rgba(0,0,0,.20),
-    0 8px 24px rgba(220,160,55,.35),
+    0 5px 10px rgba(0,0,0,.22),
+    0 8px 25px rgba(221,158,45,.34),
     0 0 0 5px rgba(244,198,111,.08) !important;
 
-  z-index: -1 !important;
+  z-index: 1 !important;
+
+  pointer-events: none !important;
 }
 
 
@@ -1844,18 +1844,17 @@ body .bottom-nav .nav-item.active::before {
    ========================================================= */
 
 body .bottom-nav .nav-item.active .nav-icon {
-
-  width: 62px !important;
-  height: 62px !important;
+  width: 64px !important;
+  height: 64px !important;
 
   margin: 0 !important;
 
   color: #17201e !important;
 
-  font-size: 27px !important;
+  font-size: 28px !important;
   font-weight: 700 !important;
 
-  z-index: 3 !important;
+  z-index: 5 !important;
 }
 
 
@@ -1864,15 +1863,14 @@ body .bottom-nav .nav-item.active .nav-icon {
    ========================================================= */
 
 body .bottom-nav .nav-item.active .nav-label {
-
   position: absolute !important;
 
-  top: 67px !important;
   left: 50% !important;
+  top: 69px !important;
 
   transform: translateX(-50%) !important;
 
-  color: #f0bf61 !important;
+  color: #efbd5e !important;
 
   font-size: 10px !important;
   font-weight: 700 !important;
@@ -1880,18 +1878,15 @@ body .bottom-nav .nav-item.active .nav-label {
   opacity: 1 !important;
   visibility: visible !important;
 
-  white-space: nowrap !important;
-
-  z-index: 5 !important;
+  z-index: 10 !important;
 }
 
 
 /* =========================================================
-   NORMAL BUTTON HOVER
+   NORMAL HOVER
    ========================================================= */
 
 body .bottom-nav .nav-item:not(.active):hover {
-
   color: #ffffff !important;
 
   transform: translateY(-2px) !important;
@@ -1899,9 +1894,7 @@ body .bottom-nav .nav-item:not(.active):hover {
 
 
 body .bottom-nav .nav-item:not(.active):hover .nav-icon {
-
   color: #ffffff !important;
-
 }
 
 
@@ -1910,26 +1903,17 @@ body .bottom-nav .nav-item:not(.active):hover .nav-icon {
    ========================================================= */
 
 body .bottom-nav .nav-item.active:hover {
-
-  transform: translateY(-14px) !important;
+  transform: translateY(-15px) !important;
 }
 
 
 /* =========================================================
-   CLICK
+   ACTIVE ICON GLOW
    ========================================================= */
 
-body .bottom-nav .nav-item:active {
-
-  transform: scale(.95) !important;
-}
-
-
-body .bottom-nav .nav-item.active:active {
-
-  transform:
-    translateY(-14px)
-    scale(.95) !important;
+body .bottom-nav .nav-item.active .nav-icon {
+  filter:
+    drop-shadow(0 1px 2px rgba(0,0,0,.20));
 }
 
 
@@ -1940,70 +1924,64 @@ body .bottom-nav .nav-item.active:active {
 @media (max-width: 600px) {
 
   body .bottom-nav {
+    width: calc(100vw - 24px) !important;
+    height: 72px !important;
 
-    width:
-      calc(100vw - 28px) !important;
-
-    max-width: 520px !important;
-
-    height: 70px !important;
-
-    bottom: 14px !important;
+    bottom: 12px !important;
 
     border-radius: 24px !important;
-
   }
 
 
   body .bottom-nav .bottom-nav-inner {
-
-    height: 70px !important;
-
+    height: 72px !important;
   }
 
 
   body .bottom-nav .nav-item {
+    height: 72px !important;
+  }
 
-    height: 70px !important;
 
+  body .bottom-nav .nav-item .nav-icon {
+    width: 26px !important;
+    height: 26px !important;
+
+    font-size: 21px !important;
+  }
+
+
+  body .bottom-nav .nav-item .nav-label {
+    font-size: 9px !important;
   }
 
 
   body .bottom-nav .nav-item.active::before {
-
-    width: 58px !important;
-    height: 58px !important;
-
+    width: 60px !important;
+    height: 60px !important;
   }
 
 
   body .bottom-nav .nav-item.active .nav-icon {
+    width: 60px !important;
+    height: 60px !important;
 
-    width: 58px !important;
-    height: 58px !important;
-
-    font-size: 25px !important;
-
+    font-size: 26px !important;
   }
 
 
   body .bottom-nav .nav-item.active .nav-label {
-
-    top: 62px !important;
-
+    top: 64px !important;
     font-size: 9px !important;
-
   }
 
 }
 
 
 /* =========================================================
-   CONTENT SPACE
+   CONTENT — KEEP SPACE ABOVE NAV
    ========================================================= */
 
 body .content {
-
   padding-bottom: 125px !important;
-
 }
