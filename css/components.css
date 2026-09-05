@@ -1622,3 +1622,388 @@
   }
 
 }
+/* =========================================================
+   BROCODE — BOTTOM NAV FINAL DESIGN
+   ========================================================= */
+
+/* Main bar */
+body .bottom-nav {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 18px !important;
+
+  transform: translateX(-50%) !important;
+
+  width: 520px !important;
+  max-width: calc(100vw - 32px) !important;
+
+  height: 74px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: #111917 !important;
+
+  border: 1px solid rgba(255,255,255,.18) !important;
+  border-radius: 25px !important;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.20),
+    0 5px 18px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.08) !important;
+
+  z-index: 99999 !important;
+
+  overflow: visible !important;
+}
+
+
+/* Inner area */
+body .bottom-nav .bottom-nav-inner {
+  position: relative !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(4, 1fr) !important;
+
+  align-items: center !important;
+  justify-items: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   EACH BUTTON
+   ========================================================= */
+
+body .bottom-nav .nav-item {
+
+  position: relative !important;
+
+  width: 100% !important;
+  height: 74px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 6px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+
+  color: rgba(255,255,255,.58) !important;
+
+  text-decoration: none !important;
+
+  font-size: 11px !important;
+  font-weight: 600 !important;
+
+  overflow: visible !important;
+
+  box-sizing: border-box !important;
+
+  transition:
+    color .25s ease,
+    transform .25s ease !important;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+body .bottom-nav .nav-item .nav-icon {
+
+  position: relative !important;
+
+  width: 28px !important;
+  height: 28px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color: rgba(255,255,255,.70) !important;
+
+  font-size: 22px !important;
+  line-height: 1 !important;
+
+  z-index: 2 !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+body .bottom-nav .nav-item .nav-label {
+
+  display: block !important;
+
+  position: static !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: rgba(255,255,255,.58) !important;
+
+  font-size: 10px !important;
+  line-height: 1 !important;
+
+  font-weight: 600 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transform: none !important;
+
+  white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   ACTIVE ITEM
+   ========================================================= */
+
+body .bottom-nav .nav-item.active {
+
+  color: #f4c66f !important;
+
+  transform: translateY(-14px) !important;
+
+  z-index: 10 !important;
+}
+
+
+/* =========================================================
+   ACTIVE GOLDEN CIRCLE
+   ========================================================= */
+
+body .bottom-nav .nav-item.active::before {
+
+  content: "" !important;
+
+  position: absolute !important;
+
+  left: 50% !important;
+  top: 50% !important;
+
+  width: 62px !important;
+  height: 62px !important;
+
+  transform: translate(-50%, -50%) !important;
+
+  border-radius: 50% !important;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #fff2c9 0%,
+      #f8d27f 35%,
+      #edb84f 68%,
+      #d99627 100%
+    ) !important;
+
+  border: 2px solid rgba(255,240,194,.9) !important;
+
+  box-shadow:
+    0 4px 8px rgba(0,0,0,.20),
+    0 8px 24px rgba(220,160,55,.35),
+    0 0 0 5px rgba(244,198,111,.08) !important;
+
+  z-index: -1 !important;
+}
+
+
+/* =========================================================
+   ACTIVE ICON
+   ========================================================= */
+
+body .bottom-nav .nav-item.active .nav-icon {
+
+  width: 62px !important;
+  height: 62px !important;
+
+  margin: 0 !important;
+
+  color: #17201e !important;
+
+  font-size: 27px !important;
+  font-weight: 700 !important;
+
+  z-index: 3 !important;
+}
+
+
+/* =========================================================
+   ACTIVE LABEL
+   ========================================================= */
+
+body .bottom-nav .nav-item.active .nav-label {
+
+  position: absolute !important;
+
+  top: 67px !important;
+  left: 50% !important;
+
+  transform: translateX(-50%) !important;
+
+  color: #f0bf61 !important;
+
+  font-size: 10px !important;
+  font-weight: 700 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  white-space: nowrap !important;
+
+  z-index: 5 !important;
+}
+
+
+/* =========================================================
+   NORMAL BUTTON HOVER
+   ========================================================= */
+
+body .bottom-nav .nav-item:not(.active):hover {
+
+  color: #ffffff !important;
+
+  transform: translateY(-2px) !important;
+}
+
+
+body .bottom-nav .nav-item:not(.active):hover .nav-icon {
+
+  color: #ffffff !important;
+
+}
+
+
+/* =========================================================
+   ACTIVE HOVER
+   ========================================================= */
+
+body .bottom-nav .nav-item.active:hover {
+
+  transform: translateY(-14px) !important;
+}
+
+
+/* =========================================================
+   CLICK
+   ========================================================= */
+
+body .bottom-nav .nav-item:active {
+
+  transform: scale(.95) !important;
+}
+
+
+body .bottom-nav .nav-item.active:active {
+
+  transform:
+    translateY(-14px)
+    scale(.95) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  body .bottom-nav {
+
+    width:
+      calc(100vw - 28px) !important;
+
+    max-width: 520px !important;
+
+    height: 70px !important;
+
+    bottom: 14px !important;
+
+    border-radius: 24px !important;
+
+  }
+
+
+  body .bottom-nav .bottom-nav-inner {
+
+    height: 70px !important;
+
+  }
+
+
+  body .bottom-nav .nav-item {
+
+    height: 70px !important;
+
+  }
+
+
+  body .bottom-nav .nav-item.active::before {
+
+    width: 58px !important;
+    height: 58px !important;
+
+  }
+
+
+  body .bottom-nav .nav-item.active .nav-icon {
+
+    width: 58px !important;
+    height: 58px !important;
+
+    font-size: 25px !important;
+
+  }
+
+
+  body .bottom-nav .nav-item.active .nav-label {
+
+    top: 62px !important;
+
+    font-size: 9px !important;
+
+  }
+
+}
+
+
+/* =========================================================
+   CONTENT SPACE
+   ========================================================= */
+
+body .content {
+
+  padding-bottom: 125px !important;
+
+}
