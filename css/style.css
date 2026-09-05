@@ -1112,3 +1112,8 @@ img {
   }
 
 }
+/* Space for floating bottom navigation */
+
+.content {
+  padding-bottom: 125px !important;
+}
