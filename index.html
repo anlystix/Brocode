@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0d14">
+  <meta name="theme-color" content="#064E3B">
 
   <title>Brocode — Community</title>
 
@@ -15,6 +15,7 @@
     rel="stylesheet"
   >
 
+  <!-- Main CSS -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
@@ -24,11 +25,13 @@
 
   <div class="app-shell">
 
-    <!-- ================= HEADER ================= -->
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
 
     <header class="topbar">
 
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" aria-label="Brocode Home">
 
         <span class="brand-mark">B</span>
 
@@ -41,23 +44,25 @@
 
       <div class="top-actions">
 
+        <!-- Explore -->
         <a
           href="explore.html"
           class="icon-btn"
           aria-label="Explore"
           title="Explore"
         >
-          <span>⌕</span>
+          <span aria-hidden="true">⌕</span>
         </a>
 
+        <!-- Notifications -->
         <a
           href="notifications.html"
           class="icon-btn notification-btn"
           aria-label="Notifications"
           title="Notifications"
         >
-          <span>♢</span>
-          <i></i>
+          <span aria-hidden="true">♢</span>
+          <i aria-hidden="true"></i>
         </a>
 
       </div>
@@ -65,11 +70,13 @@
     </header>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
 
     <main class="content">
 
-      <!-- Welcome -->
+      <!-- ================= WELCOME ================= -->
 
       <section class="welcome-row">
 
@@ -89,22 +96,22 @@
 
         </div>
 
-
+        <!-- Create Post -->
         <a
           href="create-post.html"
           class="create-btn"
+          aria-label="Create a new post"
         >
-
-          <span>＋</span>
-
+          <span aria-hidden="true">＋</span>
           <b>Post</b>
-
         </a>
 
       </section>
 
 
-      <!-- ================= CATEGORY SLIDER ================= -->
+      <!-- ==================================================
+           CATEGORY SLIDER
+      ================================================== -->
 
       <section
         class="category-wrap"
@@ -120,14 +127,12 @@
           ‹
         </button>
 
-
         <div
           id="categorySlider"
           class="category-slider"
           tabindex="0"
-        >
-        </div>
-
+          aria-label="Categories"
+        ></div>
 
         <button
           class="category-arrow right"
@@ -141,7 +146,9 @@
       </section>
 
 
-      <!-- ================= FEED TOOLBAR ================= -->
+      <!-- ==================================================
+           FEED TOOLBAR
+      ================================================== -->
 
       <div class="feed-toolbar">
 
@@ -154,7 +161,10 @@
             0 posts
           </span>
 
-          <span class="live-dot"></span>
+          <span
+            class="live-dot"
+            aria-hidden="true"
+          ></span>
 
           <span class="live-text">
             Live feed
@@ -162,136 +172,140 @@
 
         </div>
 
-
         <button
           class="sort-btn"
           id="sortBtn"
           type="button"
+          aria-label="Change post sorting"
         >
           Latest
-          <span>⌄</span>
+          <span aria-hidden="true">⌄</span>
         </button>
 
       </div>
 
 
-      <!-- ================= FEED ================= -->
+      <!-- ==================================================
+           POST FEED
+      ================================================== -->
 
       <section
         id="feed"
         class="feed"
         aria-live="polite"
-      >
-      </section>
+      ></section>
 
     </main>
 
 
-    <!-- ================= BOTTOM NAV ================= -->
+    <!-- ==================================================
+         PREMIUM BOTTOM NAVIGATION
+         
+         IMPORTANT:
+         Do NOT add "active" manually here.
+         js/app.js handles the active page automatically.
+    ================================================== -->
 
-   <!-- ================= PREMIUM BOTTOM NAV ================= -->
-
-<nav
-  class="bottom-nav"
-  aria-label="Main navigation"
->
-
-  <div class="bottom-nav-inner">
-
-
-    <!-- HOME -->
-
-    <a
-      href="index.html"
-      class="nav-item active"
-      aria-label="Home"
+    <nav
+      class="bottom-nav"
+      aria-label="Main navigation"
     >
 
-      <span class="nav-icon">
-        ⌂
-      </span>
+      <div class="bottom-nav-inner">
 
-      <span class="nav-label">
-        Home
-      </span>
+        <!-- HOME -->
+        <a
+          href="index.html"
+          class="nav-item"
+          aria-label="Home"
+          data-nav="home"
+        >
+          <span
+            class="nav-icon"
+            aria-hidden="true"
+          >⌂</span>
 
-    </a>
-
-
-    <!-- EXPLORE -->
-
-    <a
-      href="explore.html"
-      class="nav-item"
-      aria-label="Explore"
-    >
-
-      <span class="nav-icon">
-        ⌕
-      </span>
-
-      <span class="nav-label">
-        Explore
-      </span>
-
-    </a>
+          <span class="nav-label">
+            Home
+          </span>
+        </a>
 
 
-    <!-- CHAT -->
+        <!-- EXPLORE -->
+        <a
+          href="explore.html"
+          class="nav-item"
+          aria-label="Explore"
+          data-nav="explore"
+        >
+          <span
+            class="nav-icon"
+            aria-hidden="true"
+          >⌕</span>
 
-    <a
-      href="support.html"
-      class="nav-item"
-      aria-label="Chat"
-    >
-
-      <span class="nav-icon">
-        ◌
-      </span>
-
-      <span class="nav-label">
-        Chat
-      </span>
-
-    </a>
+          <span class="nav-label">
+            Explore
+          </span>
+        </a>
 
 
-    <!-- PROFILE -->
+        <!-- CHAT -->
+        <a
+          href="support.html"
+          class="nav-item"
+          aria-label="Chat"
+          data-nav="chat"
+        >
+          <span
+            class="nav-icon"
+            aria-hidden="true"
+          >◌</span>
 
-    <a
-      href="profile.html"
-      class="nav-item"
-      aria-label="Profile"
-    >
+          <span class="nav-label">
+            Chat
+          </span>
+        </a>
 
-      <span class="nav-icon">
-        ◯
-      </span>
 
-      <span class="nav-label">
-        Profile
-      </span>
+        <!-- PROFILE -->
+        <a
+          href="profile.html"
+          class="nav-item"
+          aria-label="Profile"
+          data-nav="profile"
+        >
+          <span
+            class="nav-icon"
+            aria-hidden="true"
+          >◯</span>
 
-    </a>
+          <span class="nav-label">
+            Profile
+          </span>
+        </a>
 
+      </div>
+
+    </nav>
 
   </div>
 
-</nav>
 
-
-  <!-- ================= TOAST ================= -->
+  <!-- ==================================================
+       TOAST
+  ================================================== -->
 
   <div
     id="toast"
     class="toast"
     role="status"
     aria-live="polite"
-  >
-  </div>
+  ></div>
 
 
-  <!-- ================= JAVASCRIPT ================= -->
+  <!-- ==================================================
+       JAVASCRIPT
+  ================================================== -->
 
   <script src="js/app.js"></script>
   <script src="js/posts.js"></script>
