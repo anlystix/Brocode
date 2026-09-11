@@ -2,6 +2,11 @@
    BROCODE — APP CORE
    ========================================================= */
 
+
+/* =========================================================
+   APP CONFIG
+   ========================================================= */
+
 const APP_KEY = "brocode_demo_v1";
 
 const CATEGORIES = [
@@ -20,7 +25,9 @@ const CATEGORIES = [
 
 function getAppData() {
   try {
-    const data = JSON.parse(localStorage.getItem(APP_KEY));
+    const data = JSON.parse(
+      localStorage.getItem(APP_KEY)
+    );
 
     return data || {
       savedPosts: [],
@@ -41,7 +48,10 @@ function getAppData() {
 
 
 function saveAppData(data) {
-  localStorage.setItem(APP_KEY, JSON.stringify(data));
+  localStorage.setItem(
+    APP_KEY,
+    JSON.stringify(data)
+  );
 }
 
 
@@ -54,6 +64,7 @@ function getCurrentUser() {
     return JSON.parse(
       localStorage.getItem("community_user") || "null"
     );
+
   } catch {
     return null;
   }
@@ -65,13 +76,16 @@ function getCurrentUser() {
    ========================================================= */
 
 function escapeHTML(value = "") {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;"
-  }[char]));
+  return String(value).replace(
+    /[&<>"']/g,
+    char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[char])
+  );
 }
 
 
@@ -81,7 +95,8 @@ function escapeHTML(value = "") {
 
 function showToast(message, type = "default") {
 
-  const toast = document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
 
   if (!toast) return;
 
@@ -96,6 +111,13 @@ function showToast(message, type = "default") {
   }
 
   toast.textContent = message;
+
+  /*
+   * Force reflow so repeated toast messages
+   * can animate correctly.
+   */
+  void toast.offsetWidth;
+
   toast.classList.add("show");
 
   clearTimeout(window.__toastTimer);
@@ -112,7 +134,8 @@ function showToast(message, type = "default") {
 
 function setupCategories() {
 
-  const slider = document.getElementById("categorySlider");
+  const slider =
+    document.getElementById("categorySlider");
 
   if (!slider) return;
 
@@ -121,43 +144,54 @@ function setupCategories() {
   let selectedCategory =
     data.selectedCategory || "All";
 
+  /*
+   * Safety:
+   * If stored category no longer exists,
+   * reset to All.
+   */
+  if (!CATEGORIES.includes(selectedCategory)) {
+    selectedCategory = "All";
+
+    const currentData = getAppData();
+    currentData.selectedCategory = "All";
+    saveAppData(currentData);
+  }
 
   slider.innerHTML = "";
 
-
   CATEGORIES.forEach(category => {
 
-    const button = document.createElement("button");
+    const button =
+      document.createElement("button");
 
     button.type = "button";
 
-    button.className = "category-item";
+    button.className =
+      "category-item";
 
     button.textContent = category;
-
 
     if (category === selectedCategory) {
       button.classList.add("active");
     }
 
-
     button.addEventListener("click", () => {
 
       selectedCategory = category;
 
-      const currentData = getAppData();
+      const currentData =
+        getAppData();
 
-      currentData.selectedCategory = category;
+      currentData.selectedCategory =
+        category;
 
       saveAppData(currentData);
-
 
       document
         .querySelectorAll(".category-item")
         .forEach(item => {
           item.classList.remove("active");
         });
-
 
       button.classList.add("active");
 
@@ -166,11 +200,15 @@ function setupCategories() {
        * Center selected category
        */
 
-      button.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
-      });
+      try {
+        button.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center"
+        });
+      } catch (error) {
+        button.scrollIntoView();
+      }
 
 
       /*
@@ -186,7 +224,6 @@ function setupCategories() {
           category === "All"
             ? "All Posts"
             : category;
-
       }
 
 
@@ -195,9 +232,12 @@ function setupCategories() {
        */
 
       window.dispatchEvent(
-        new CustomEvent("categorychange", {
-          detail: category
-        })
+        new CustomEvent(
+          "categorychange",
+          {
+            detail: category
+          }
+        )
       );
 
     });
@@ -212,25 +252,29 @@ function setupCategories() {
    */
 
   const activeButton =
-    slider.querySelector(".category-item.active");
+    slider.querySelector(
+      ".category-item.active"
+    );
 
   if (activeButton) {
 
     setTimeout(() => {
 
-      activeButton.scrollIntoView({
-        behavior: "instant",
-        block: "nearest",
-        inline: "center"
-      });
+      try {
+        activeButton.scrollIntoView({
+          behavior: "instant",
+          block: "nearest",
+          inline: "center"
+        });
+      } catch (error) {
+        activeButton.scrollIntoView();
+      }
 
     }, 50);
-
   }
 
 
   setupCategoryArrows();
-
   setupCategorySwipe();
 }
 
@@ -242,19 +286,31 @@ function setupCategories() {
 function setupCategoryArrows() {
 
   const slider =
-    document.getElementById("categorySlider");
+    document.getElementById(
+      "categorySlider"
+    );
 
   const prev =
-    document.getElementById("categoryPrev");
+    document.getElementById(
+      "categoryPrev"
+    );
 
   const next =
-    document.getElementById("categoryNext");
-
+    document.getElementById(
+      "categoryNext"
+    );
 
   if (!slider) return;
 
 
-  if (prev) {
+  /*
+   * Prevent duplicate listeners
+   * if setup is called again.
+   */
+
+  if (prev && !prev.dataset.bound) {
+
+    prev.dataset.bound = "true";
 
     prev.addEventListener("click", () => {
 
@@ -264,11 +320,12 @@ function setupCategoryArrows() {
       });
 
     });
-
   }
 
 
-  if (next) {
+  if (next && !next.dataset.bound) {
+
+    next.dataset.bound = "true";
 
     next.addEventListener("click", () => {
 
@@ -278,7 +335,6 @@ function setupCategoryArrows() {
       });
 
     });
-
   }
 
 }
@@ -291,9 +347,22 @@ function setupCategoryArrows() {
 function setupCategorySwipe() {
 
   const slider =
-    document.getElementById("categorySlider");
+    document.getElementById(
+      "categorySlider"
+    );
 
   if (!slider) return;
+
+
+  /*
+   * Prevent duplicate swipe listeners.
+   */
+
+  if (slider.dataset.swipeBound === "true") {
+    return;
+  }
+
+  slider.dataset.swipeBound = "true";
 
 
   let startX = 0;
@@ -304,7 +373,10 @@ function setupCategorySwipe() {
     "touchstart",
     event => {
 
-      startX = event.touches[0].clientX;
+      if (!event.touches.length) return;
+
+      startX =
+        event.touches[0].clientX;
 
       isDragging = true;
 
@@ -317,7 +389,12 @@ function setupCategorySwipe() {
     "touchmove",
     event => {
 
-      if (!isDragging) return;
+      if (
+        !isDragging ||
+        !event.touches.length
+      ) {
+        return;
+      }
 
       const currentX =
         event.touches[0].clientX;
@@ -325,13 +402,11 @@ function setupCategorySwipe() {
       const difference =
         startX - currentX;
 
-
       if (Math.abs(difference) > 20) {
 
         slider.scrollLeft += difference;
 
         startX = currentX;
-
       }
 
     },
@@ -358,15 +433,35 @@ function setupCategorySwipe() {
 function setupSort() {
 
   const sortButton =
-    document.getElementById("sortBtn");
+    document.getElementById(
+      "sortBtn"
+    );
 
   if (!sortButton) return;
-
 
   const data = getAppData();
 
   let sort =
     data.sort || "latest";
+
+
+  /*
+   * Safety for invalid stored value.
+   */
+
+  if (
+    sort !== "latest" &&
+    sort !== "popular"
+  ) {
+    sort = "latest";
+
+    const currentData =
+      getAppData();
+
+    currentData.sort = sort;
+
+    saveAppData(currentData);
+  }
 
 
   updateSortButton(
@@ -375,41 +470,60 @@ function setupSort() {
   );
 
 
-  sortButton.addEventListener("click", () => {
+  /*
+   * Prevent duplicate listener.
+   */
 
-    sort =
-      sort === "latest"
-        ? "popular"
-        : "latest";
+  if (
+    sortButton.dataset.bound === "true"
+  ) {
+    return;
+  }
 
-
-    const currentData = getAppData();
-
-    currentData.sort = sort;
-
-    saveAppData(currentData);
+  sortButton.dataset.bound = "true";
 
 
-    updateSortButton(
-      sortButton,
-      sort
-    );
+  sortButton.addEventListener(
+    "click",
+    () => {
+
+      sort =
+        sort === "latest"
+          ? "popular"
+          : "latest";
+
+      const currentData =
+        getAppData();
+
+      currentData.sort = sort;
+
+      saveAppData(currentData);
 
 
-    window.dispatchEvent(
-      new CustomEvent("sortchange", {
-        detail: sort
-      })
-    );
+      updateSortButton(
+        sortButton,
+        sort
+      );
 
 
-    showToast(
-      sort === "latest"
-        ? "Showing latest posts"
-        : "Showing popular posts"
-    );
+      window.dispatchEvent(
+        new CustomEvent(
+          "sortchange",
+          {
+            detail: sort
+          }
+        )
+      );
 
-  });
+
+      showToast(
+        sort === "latest"
+          ? "Showing latest posts"
+          : "Showing popular posts"
+      );
+
+    }
+  );
 
 }
 
@@ -418,16 +532,17 @@ function setupSort() {
    SORT BUTTON UI
    ========================================================= */
 
-function updateSortButton(button, sort) {
+function updateSortButton(
+  button,
+  sort
+) {
 
   if (!button) return;
-
 
   button.innerHTML =
     sort === "latest"
       ? `Latest <span>⌄</span>`
       : `Popular <span>⌄</span>`;
-
 }
 
 
@@ -437,16 +552,28 @@ function updateSortButton(button, sort) {
 
 function toggleSavePost(postId) {
 
-  const data = getAppData();
+  if (!postId) return false;
+
+  const data =
+    getAppData();
+
+
+  if (!Array.isArray(data.savedPosts)) {
+    data.savedPosts = [];
+  }
 
 
   const index =
-    data.savedPosts.indexOf(postId);
+    data.savedPosts.indexOf(
+      postId
+    );
 
 
   if (index === -1) {
 
-    data.savedPosts.push(postId);
+    data.savedPosts.push(
+      postId
+    );
 
     saveAppData(data);
 
@@ -456,11 +583,13 @@ function toggleSavePost(postId) {
     );
 
     return true;
-
   }
 
 
-  data.savedPosts.splice(index, 1);
+  data.savedPosts.splice(
+    index,
+    1
+  );
 
   saveAppData(data);
 
@@ -469,7 +598,6 @@ function toggleSavePost(postId) {
   );
 
   return false;
-
 }
 
 
@@ -479,10 +607,16 @@ function toggleSavePost(postId) {
 
 function isPostSaved(postId) {
 
-  const data = getAppData();
+  if (!postId) return false;
 
-  return data.savedPosts.includes(postId);
+  const data =
+    getAppData();
 
+  return Array.isArray(
+    data.savedPosts
+  )
+    ? data.savedPosts.includes(postId)
+    : false;
 }
 
 
@@ -492,16 +626,28 @@ function isPostSaved(postId) {
 
 function togglePostLike(postId) {
 
-  const data = getAppData();
+  if (!postId) return false;
+
+  const data =
+    getAppData();
+
+
+  if (!Array.isArray(data.likedPosts)) {
+    data.likedPosts = [];
+  }
 
 
   const index =
-    data.likedPosts.indexOf(postId);
+    data.likedPosts.indexOf(
+      postId
+    );
 
 
   if (index === -1) {
 
-    data.likedPosts.push(postId);
+    data.likedPosts.push(
+      postId
+    );
 
     saveAppData(data);
 
@@ -511,11 +657,13 @@ function togglePostLike(postId) {
     );
 
     return true;
-
   }
 
 
-  data.likedPosts.splice(index, 1);
+  data.likedPosts.splice(
+    index,
+    1
+  );
 
   saveAppData(data);
 
@@ -524,7 +672,6 @@ function togglePostLike(postId) {
   );
 
   return false;
-
 }
 
 
@@ -534,10 +681,16 @@ function togglePostLike(postId) {
 
 function isPostLiked(postId) {
 
-  const data = getAppData();
+  if (!postId) return false;
 
-  return data.likedPosts.includes(postId);
+  const data =
+    getAppData();
 
+  return Array.isArray(
+    data.likedPosts
+  )
+    ? data.likedPosts.includes(postId)
+    : false;
 }
 
 
@@ -545,66 +698,100 @@ function isPostLiked(postId) {
    GLOBAL CLICK HANDLER
    ========================================================= */
 
-document.addEventListener(
-  "click",
-  event => {
+function handleGlobalPostActions(event) {
 
-    const actionButton =
-      event.target.closest(
-        "[data-action]"
+  const actionButton =
+    event.target.closest(
+      "[data-action]"
+    );
+
+  if (!actionButton) return;
+
+
+  const action =
+    actionButton.dataset.action;
+
+  const postId =
+    actionButton.dataset.postId;
+
+
+  if (!postId) return;
+
+
+  /*
+   * Prevent duplicate processing
+   * when another module handles
+   * the same action.
+   */
+
+  if (
+    action === "like" ||
+    action === "save" ||
+    action === "share"
+  ) {
+    event.preventDefault();
+  }
+
+
+  if (action === "like") {
+
+    const liked =
+      togglePostLike(
+        postId
       );
 
+    actionButton.classList.toggle(
+      "liked",
+      liked
+    );
 
-    if (!actionButton) return;
-
-
-    const action =
-      actionButton.dataset.action;
-
-
-    const postId =
-      actionButton.dataset.postId;
+    return;
+  }
 
 
-    if (!postId) return;
+  if (action === "save") {
 
-
-    if (action === "like") {
-
-      const liked =
-        togglePostLike(postId);
-
-
-      actionButton.classList.toggle(
-        "liked",
-        liked
+    const saved =
+      toggleSavePost(
+        postId
       );
 
-    }
+    actionButton.classList.toggle(
+      "saved",
+      saved
+    );
+
+    return;
+  }
 
 
-    if (action === "save") {
+  if (action === "share") {
 
-      const saved =
-        toggleSavePost(postId);
-
-
-      actionButton.classList.toggle(
-        "saved",
-        saved
-      );
-
-    }
-
-
-    if (action === "share") {
-
-      sharePost(postId);
-
-    }
+    sharePost(
+      postId
+    );
 
   }
-);
+
+}
+
+
+/*
+ * Bind global action handler only once.
+ */
+
+if (
+  !window.__brocodeGlobalActionHandler
+) {
+
+  window.__brocodeGlobalActionHandler =
+    handleGlobalPostActions;
+
+  document.addEventListener(
+    "click",
+    window.__brocodeGlobalActionHandler
+  );
+}
 
 
 /* =========================================================
@@ -612,6 +799,8 @@ document.addEventListener(
    ========================================================= */
 
 async function sharePost(postId) {
+
+  if (!postId) return;
 
   const shareUrl =
     `${window.location.origin}${window.location.pathname}?post=${encodeURIComponent(postId)}`;
@@ -631,11 +820,13 @@ async function sharePost(postId) {
       });
 
       return;
-
     }
 
 
-    if (navigator.clipboard) {
+    if (
+      navigator.clipboard &&
+      typeof navigator.clipboard.writeText === "function"
+    ) {
 
       await navigator.clipboard.writeText(
         shareUrl
@@ -647,7 +838,6 @@ async function sharePost(postId) {
       );
 
       return;
-
     }
 
   } catch (error) {
@@ -663,6 +853,55 @@ async function sharePost(postId) {
       return;
     }
 
+  }
+
+
+  /*
+   * Fallback for browsers where
+   * Clipboard API is unavailable.
+   */
+
+  try {
+
+    const temporaryInput =
+      document.createElement(
+        "input"
+      );
+
+    temporaryInput.value =
+      shareUrl;
+
+    temporaryInput.style.position =
+      "fixed";
+
+    temporaryInput.style.opacity =
+      "0";
+
+    document.body.appendChild(
+      temporaryInput
+    );
+
+    temporaryInput.select();
+
+    const copied =
+      document.execCommand(
+        "copy"
+      );
+
+    temporaryInput.remove();
+
+    if (copied) {
+
+      showToast(
+        "Post link copied",
+        "success"
+      );
+
+      return;
+    }
+
+  } catch (error) {
+    /* Ignore fallback error */
   }
 
 
@@ -687,24 +926,43 @@ function setActiveNavigation() {
       .toLowerCase();
 
 
+  /*
+   * GitHub Pages / root fallback.
+   */
+
+  const normalizedCurrentPage =
+    currentPage || "index.html";
+
+
   document
-    .querySelectorAll(".bottom-nav a")
+    .querySelectorAll(
+      ".bottom-nav a"
+    )
     .forEach(link => {
 
       const href =
-        link.getAttribute("href") || "";
+        link.getAttribute(
+          "href"
+        ) || "";
 
 
       const page =
         href
           .split("/")
           .pop()
+          .split("?")[0]
+          .split("#")[0]
           .toLowerCase();
+
+
+      const normalizedPage =
+        page || "index.html";
 
 
       link.classList.toggle(
         "active",
-        page === currentPage
+        normalizedPage ===
+          normalizedCurrentPage
       );
 
     });
@@ -716,18 +974,39 @@ function setActiveNavigation() {
    INITIALIZE APP
    ========================================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+function initializeApp() {
 
-    setupCategories();
+  setupCategories();
 
-    setupSort();
+  setupSort();
 
-    setActiveNavigation();
+  setActiveNavigation();
 
-  }
-);
+}
+
+
+/*
+ * DOM ready initialization.
+ */
+
+if (
+  document.readyState ===
+  "loading"
+) {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializeApp,
+    {
+      once: true
+    }
+  );
+
+} else {
+
+  initializeApp();
+
+}
 
 
 /* =========================================================
@@ -754,6 +1033,8 @@ window.BrocodeApp = {
 
   isPostLiked,
 
-  sharePost
+  sharePost,
+
+  setActiveNavigation
 
 };
