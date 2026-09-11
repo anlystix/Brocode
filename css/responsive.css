@@ -12,6 +12,7 @@
   max-width: var(--container);
 }
 
+
 /* =========================================================
    SMALL MOBILE — 320px+
    ========================================================= */
@@ -47,7 +48,6 @@
   .create-btn {
     min-width: 40px;
     width: 40px;
-
     padding: 0;
   }
 
@@ -86,7 +86,6 @@
   .create-btn {
     width: auto;
     min-width: 76px;
-
     padding: 0 13px;
   }
 
@@ -192,19 +191,34 @@
 
 @media (min-width: 768px) {
 
+  /*
+   * Keep the main premium Emerald + Cream theme.
+   * Do not introduce a separate purple desktop background.
+   */
+
   body {
     background:
       radial-gradient(
-        circle at 50% -10%,
-        rgba(139, 92, 246, 0.15),
-        transparent 28%
+        circle at 50% -12%,
+        rgba(6, 78, 59, 0.13) 0%,
+        rgba(6, 78, 59, 0.05) 28%,
+        transparent 55%
       ),
-      var(--bg);
+      radial-gradient(
+        circle at 100% 20%,
+        rgba(248, 231, 201, 0.42) 0%,
+        transparent 36%
+      ),
+      linear-gradient(
+        135deg,
+        #F7F4EE 0%,
+        #FAF8F3 48%,
+        #F1ECE3 100%
+      );
   }
 
   .topbar {
     height: 72px;
-
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -237,10 +251,8 @@
 
   .category-item {
     height: 40px;
-
     padding-left: 18px;
     padding-right: 18px;
-
     font-size: 11px;
   }
 
@@ -280,7 +292,6 @@
 
   .content {
     max-width: 780px;
-
     padding-top: 48px;
   }
 
@@ -341,6 +352,141 @@
 
 
 /* =========================================================
+   PREMIUM BOTTOM NAV — RESPONSIVE
+   ========================================================= */
+
+/*
+ * The main Bottom Nav design is controlled by components.css.
+ * These responsive rules only make sure that the same
+ * floating navigation remains properly sized at different
+ * screen widths.
+ */
+
+.bottom-nav {
+  width: min(
+    calc(100% - 24px),
+    520px
+  );
+
+  left: 50%;
+  right: auto;
+
+  transform: translateX(-50%);
+}
+
+.bottom-nav-inner {
+  width: 100%;
+}
+
+
+/* =========================================================
+   SMALL MOBILE BOTTOM NAV — 320px+
+   ========================================================= */
+
+@media (min-width: 320px) {
+
+  .bottom-nav {
+    width: calc(100% - 20px);
+  }
+
+  .bottom-nav-inner {
+    min-height: 64px;
+  }
+
+  .nav-item {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .nav-icon {
+    flex-shrink: 0;
+  }
+
+  .nav-label {
+    white-space: nowrap;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE BOTTOM NAV — 375px+
+   ========================================================= */
+
+@media (min-width: 375px) {
+
+  .bottom-nav {
+    width: calc(100% - 24px);
+  }
+
+  .bottom-nav-inner {
+    min-height: 66px;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE MOBILE BOTTOM NAV — 430px+
+   ========================================================= */
+
+@media (min-width: 430px) {
+
+  .bottom-nav {
+    width: calc(100% - 30px);
+    max-width: 500px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET BOTTOM NAV — 600px+
+   ========================================================= */
+
+@media (min-width: 600px) {
+
+  .bottom-nav {
+    width: min(
+      calc(100% - 48px),
+      520px
+    );
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / DESKTOP BOTTOM NAV — 768px+
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  .bottom-nav {
+    width: min(
+      calc(100% - 60px),
+      520px
+    );
+  }
+
+}
+
+
+/* =========================================================
+   DESKTOP BOTTOM NAV — 900px+
+   ========================================================= */
+
+@media (min-width: 900px) {
+
+  .bottom-nav {
+    width: 500px;
+    max-width: 500px;
+  }
+
+}
+
+
+/* =========================================================
    LANDSCAPE MOBILE
    ========================================================= */
 
@@ -362,6 +508,10 @@
   .bottom-nav {
     height: 58px;
     bottom: 7px;
+  }
+
+  .bottom-nav-inner {
+    min-height: 58px;
   }
 
 }
@@ -402,6 +552,7 @@
 
 }
 
+
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
@@ -415,6 +566,58 @@
     animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS — SAFETY
+   ========================================================= */
+
+@media (max-width: 319px) {
+
+  .bottom-nav {
+    width: calc(100% - 14px);
+  }
+
+  .bottom-nav-inner {
+    min-height: 60px;
+  }
+
+  .nav-item {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .nav-label {
+    font-size: 9px;
+  }
+
+}
+
+
+/* =========================================================
+   SAFE CONTENT SPACE FOR FIXED BOTTOM NAV
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .content {
+    padding-bottom: 100px;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SPACE ON DESKTOP FOR FLOATING NAV
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  .content {
+    padding-bottom: 110px;
   }
 
 }
